@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script async src="https://www.googletagmanager.com/gtag/js?id=G-XVCB9W38XJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XVCB9W38XJ');
+</script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>College Credits – Ednivo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    :root {
+      --ink: #0e1a2b; --ink2: #16263d;
+      --saffron: #e8832a; --saffron2: #f5a455;
+      --blue: #1a4fa0; --blue2: #2e6fd4;
+      --green: #1a7a4a; --green2: #24a866;
+      --white: #ffffff; --off: #f7f5f1; --muted: #6b7a8d;
+    }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--white); color: var(--ink); overflow-x: hidden; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex; align-items: center; justify-content: space-between; padding: 1rem 6%; background: rgba(14,26,43,0.97); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 700; color: var(--white); text-decoration: none; }
+    .logo em { font-style: normal; color: var(--saffron); }
+    .back-btn { display: flex; align-items: center; gap: 0.5rem; color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; font-weight: 500; border: 1px solid rgba(255,255,255,0.15); padding: 0.45rem 1rem; border-radius: 6px; transition: all 0.2s; }
+    .back-btn:hover { color: var(--saffron); border-color: var(--saffron); }
+
+    .hero { min-height: 52vh; background: var(--ink); display: flex; align-items: center; padding: 9rem 6% 5rem; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--saffron) 33.3%, var(--white) 33.3% 66.6%, var(--green) 66.6%); }
+    .hero-bg { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 60% 70% at 80% 50%, rgba(26,79,160,0.1) 0%, transparent 65%); }
+    .hero-dots { position: absolute; inset: 0; pointer-events: none; background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 32px 32px; }
+    .hero-content { position: relative; z-index: 2; max-width: 700px; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 0.6rem; border: 1px solid rgba(46,111,212,0.4); background: rgba(46,111,212,0.08); padding: 0.4rem 1.1rem; border-radius: 100px; color: #6ea8fe; font-size: 0.72rem; font-weight: 600; letter-spacing: 1.8px; text-transform: uppercase; margin-bottom: 1.5rem; }
+    .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem,6vw,5rem); font-weight: 700; line-height: 1.06; color: var(--white); letter-spacing: -1px; margin-bottom: 1.2rem; }
+    .hero h1 em { font-style: italic; background: linear-gradient(120deg, #6ea8fe, #93c5fd); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero p { font-size: 1.05rem; line-height: 1.8; color: rgba(255,255,255,0.6); font-weight: 300; max-width: 560px; }
+
+    .stats-row { background: var(--ink2); padding: 2rem 6%; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .stat { text-align: center; }
+    .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 700; color: #6ea8fe; }
+    .stat-label { font-size: 0.7rem; color: rgba(255,255,255,0.45); letter-spacing: 1px; text-transform: uppercase; margin-top: 0.2rem; }
+
+    section { padding: 5rem 6%; }
+    .section-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--blue2); margin-bottom: 0.8rem; display: block; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem,3.5vw,2.6rem); font-weight: 700; line-height: 1.15; color: var(--ink); margin-bottom: 1rem; }
+    .section-sub { color: var(--muted); font-size: 0.98rem; line-height: 1.75; font-weight: 300; max-width: 560px; }
+
+    /* PRICING */
+    .pricing-section { background: var(--off); }
+    .pricing-highlight {
+      background: var(--ink); border-radius: 16px; padding: 3rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; margin-top: 3rem;
+    }
+    .ph-left h3 { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 700; color: #6ea8fe; margin-bottom: 0.5rem; }
+    .ph-left p { color: rgba(255,255,255,0.55); font-size: 0.95rem; line-height: 1.7; }
+    .ph-right { display: flex; flex-direction: column; gap: 1rem; }
+    .ph-item { display: flex; align-items: center; gap: 1rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 1rem 1.2rem; }
+    .ph-item .ph-icon { font-size: 1.4rem; flex-shrink: 0; }
+    .ph-item h4 { font-size: 0.88rem; font-weight: 600; color: var(--white); margin-bottom: 0.2rem; }
+    .ph-item p { font-size: 0.78rem; color: rgba(255,255,255,0.45); }
+
+    /* HOW IT WORKS */
+    .how-section { background: var(--white); }
+    .steps-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; margin-top: 3rem; }
+    .step { background: var(--off); border-radius: 12px; padding: 1.8rem; border: 1px solid rgba(14,26,43,0.07); transition: transform 0.25s, box-shadow 0.25s; }
+    .step:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(14,26,43,0.08); }
+    .step-num { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 700; color: rgba(46,111,212,0.2); line-height: 1; margin-bottom: 0.8rem; }
+    .step h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 700; color: var(--ink); margin-bottom: 0.5rem; }
+    .step p { font-size: 0.83rem; color: var(--muted); line-height: 1.7; }
+
+    /* SUBJECTS */
+    .subjects-section { background: var(--off); }
+    .subjects-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.2rem; margin-top: 3rem; }
+    .subject-card { background: var(--white); border-radius: 10px; padding: 1.5rem; border: 1px solid rgba(14,26,43,0.08); display: flex; align-items: center; gap: 1rem; transition: border-color 0.25s, transform 0.25s; }
+    .subject-card:hover { border-color: #6ea8fe; transform: translateY(-3px); }
+    .subject-icon { font-size: 1.5rem; flex-shrink: 0; }
+    .subject-card h4 { font-size: 0.9rem; font-weight: 600; color: var(--ink); margin-bottom: 0.2rem; }
+    .subject-card p { font-size: 0.78rem; color: var(--muted); }
+
+    /* SAVINGS */
+    .savings-section { background: var(--white); }
+    .savings-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
+    .savings-card { border-radius: 14px; padding: 2rem; }
+    .savings-card.with-us { background: var(--ink); }
+    .savings-card.without-us { background: var(--off); border: 1px solid rgba(14,26,43,0.08); }
+    .savings-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 700; margin-bottom: 1.2rem; }
+    .savings-card.with-us h3 { color: #6ea8fe; }
+    .savings-card.without-us h3 { color: var(--ink); }
+    .savings-row { display: flex; justify-content: space-between; align-items: center; padding: 0.7rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 0.85rem; }
+    .savings-card.without-us .savings-row { border-color: rgba(14,26,43,0.07); }
+    .savings-row span:first-child { color: rgba(255,255,255,0.6); }
+    .savings-card.without-us .savings-row span:first-child { color: var(--muted); }
+    .savings-row span:last-child { font-weight: 700; color: var(--white); }
+    .savings-card.without-us .savings-row span:last-child { color: var(--ink); }
+    .savings-total { display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; font-size: 1rem; font-weight: 700; }
+    .savings-total .label { color: rgba(255,255,255,0.8); }
+    .savings-card.without-us .savings-total .label { color: var(--ink); }
+    .savings-total .value { color: #6ea8fe; font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; }
+    .savings-card.without-us .savings-total .value { color: #e05252; }
+
+    /* CTA */
+    .cta-section { background: var(--ink); text-align: center; padding: 5rem 6%; position: relative; overflow: hidden; }
+    .cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(46,111,212,0.1) 0%, transparent 70%); }
+    .cta-section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem,4vw,3rem); font-weight: 700; color: var(--white); margin-bottom: 1rem; position: relative; z-index: 1; }
+    .cta-section p { color: rgba(255,255,255,0.55); font-size: 1rem; margin-bottom: 2rem; position: relative; z-index: 1; }
+    .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+    .btn-primary { background: #2e6fd4; color: var(--white); padding: 0.85rem 2rem; border-radius: 6px; font-weight: 700; font-size: 0.92rem; text-decoration: none; transition: background 0.2s, transform 0.2s; }
+    .btn-primary:hover { background: #4d87e8; transform: translateY(-2px); }
+    .btn-outline { border: 1.5px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.85); padding: 0.85rem 2rem; border-radius: 6px; font-weight: 500; font-size: 0.92rem; text-decoration: none; transition: border-color 0.2s, color 0.2s; }
+    .btn-outline:hover { border-color: #6ea8fe; color: #6ea8fe; }
+
+    footer { background: var(--ink2); color: rgba(255,255,255,0.4); padding: 1.5rem 6%; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; border-top: 1px solid rgba(255,255,255,0.05); }
+    footer p { font-size: 0.82rem; }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 700; color: var(--white); }
+    .footer-logo em { font-style: normal; color: var(--saffron); }
+
+    @media (max-width: 900px) {
+      .pricing-highlight, .savings-grid { grid-template-columns: 1fr; }
+      .steps-grid, .subjects-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .steps-grid, .subjects-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+  <link rel="icon" type="image/svg+xml" href="assets/ednivo-logo.png">
+  <link rel="stylesheet" href="assets/mobile.css">
+<link rel="stylesheet" href="gcc.css"><link rel="stylesheet" href="public-updates.css"><script src="site-engagement.js"></script></head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo"><img src="assets/ednivo-logo.png" alt="Ednivo" class="brand-logo" style="height:32px;width:auto;max-width:150px;vertical-align:middle;object-fit:contain;"></a>
+  <a href="index.html" class="back-btn">← Back to Home</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-dots"></div>
+  <div class="hero-content">
+    <div class="hero-badge">🎓 Core Service 03</div>
+    <h1>College<br><em>Credits</em></h1>
+    <p>Earn university-level credits before you even arrive on campus. We guide you through AP, IB, CLEP, and dual enrolment — with credits transferred directly to your US university.</p>
+  </div>
+</section>
+
+<div class="stats-row">
+  <div class="stat"><div class="stat-num">$250</div><div class="stat-label">Per College Credit</div></div>
+  <div class="stat"><div class="stat-num">3–4</div><div class="stat-label">Credits per Exam (avg)</div></div>
+  <div class="stat"><div class="stat-num">$4,000+</div><div class="stat-label">Avg Tuition Saved</div></div>
+  <div class="stat"><div class="stat-num">Direct</div><div class="stat-label">Transfer to University</div></div>
+</div>
+
+<!-- PRICING -->
+<section class="pricing-section">
+  <span class="section-label">Transparent Pricing</span>
+  <h2 class="section-title">$250 Per Credit —<br>Transferred Directly to Your University</h2>
+  <p class="section-sub">Each credit we help you earn is transferred straight to your US university — saving you tuition that can cost $1,000+ per credit at the university itself.</p>
+  <div class="pricing-highlight">
+    <div class="ph-left">
+      <h3>$250<br><span style="font-size:1rem;color:rgba(255,255,255,0.4);font-family:'Plus Jakarta Sans',sans-serif;font-weight:400;">per college credit</span></h3>
+      <p>Each credit is guided, supported, and directly transferred to your enrolled US university. No middlemen, no delays.</p>
+    </div>
+    <div class="ph-right">
+      <div class="ph-item">
+        <div class="ph-icon">🎯</div>
+        <div><h4>Direct University Transfer</h4><p>Credits go straight to your university — no extra paperwork from your side.</p></div>
+      </div>
+      <div class="ph-item">
+        <div class="ph-icon">💰</div>
+        <div><h4>Massive Tuition Savings</h4><p>US universities charge $800–$2,000 per credit. You pay $250.</p></div>
+      </div>
+      <div class="ph-item">
+        <div class="ph-icon">⏱️</div>
+        <div><h4>Save a Full Semester</h4><p>Earn 15–20 credits and skip an entire semester of university tuition.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section">
+  <span class="section-label">How It Works</span>
+  <h2 class="section-title">From Enrolment to<br>University Transfer</h2>
+  <div class="steps-grid">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h4>Credit Assessment</h4>
+      <p>We analyse your target university's credit transfer policy and identify which exams give you the most credits.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h4>Exam Selection</h4>
+      <p>Together we pick the right AP, IB, CLEP, or dual enrolment courses that align with your major and goals.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h4>Guided Preparation</h4>
+      <p>Online prep sessions, study materials, and mock exams to maximise your score on every credit exam.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <h4>Direct Transfer</h4>
+      <p>Once you pass, we handle the credit transfer documentation directly to your enrolled US university.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SUBJECTS -->
+<section class="subjects-section">
+  <span class="section-label">Subjects We Cover</span>
+  <h2 class="section-title">Earn Credits Across<br>Every Major Discipline</h2>
+  <div class="subjects-grid">
+    <div class="subject-card"><div class="subject-icon">🧮</div><div><h4>Calculus AB / BC</h4><p>3–4 credits · Most in-demand AP exam</p></div></div>
+    <div class="subject-card"><div class="subject-icon">💻</div><div><h4>Computer Science A</h4><p>3 credits · Java programming fundamentals</p></div></div>
+    <div class="subject-card"><div class="subject-icon">⚗️</div><div><h4>Chemistry</h4><p>3–4 credits · Perfect for pre-med students</p></div></div>
+    <div class="subject-card"><div class="subject-icon">📐</div><div><h4>Physics C</h4><p>4 credits · Mechanics & E&M modules</p></div></div>
+    <div class="subject-card"><div class="subject-icon">🧬</div><div><h4>Biology</h4><p>3–4 credits · College-level biology coverage</p></div></div>
+    <div class="subject-card"><div class="subject-icon">📊</div><div><h4>Statistics</h4><p>3 credits · Essential for business & data students</p></div></div>
+    <div class="subject-card"><div class="subject-icon">🌐</div><div><h4>World History</h4><p>3 credits · Humanities & liberal arts credit</p></div></div>
+    <div class="subject-card"><div class="subject-icon">💰</div><div><h4>Macroeconomics</h4><p>3 credits · Business & economics students</p></div></div>
+    <div class="subject-card"><div class="subject-icon">✍️</div><div><h4>English Language</h4><p>3 credits · Fulfils writing requirements</p></div></div>
+  </div>
+</section>
+
+<!-- SAVINGS COMPARISON -->
+<section class="savings-section">
+  <span class="section-label">Why It's Worth It</span>
+  <h2 class="section-title">See How Much You<br>Save with Ednivo</h2>
+  <p class="section-sub">Compare what 5 college credits costs at a US university vs. through Ednivo.</p>
+  <div class="savings-grid">
+    <div class="savings-card with-us">
+      <h3>✅ With Ednivo</h3>
+      <div class="savings-row"><span>5 college credits</span><span>5 × $250</span></div>
+      <div class="savings-row"><span>Guided prep included</span><span>✓ Included</span></div>
+      <div class="savings-row"><span>Direct university transfer</span><span>✓ Included</span></div>
+      <div class="savings-row"><span>Study materials</span><span>✓ Included</span></div>
+      <div class="savings-total"><span class="label">Total Cost</span><span class="value">$1,250</span></div>
+    </div>
+    <div class="savings-card without-us">
+      <h3>❌ Without Ednivo</h3>
+      <div class="savings-row"><span>5 credits at US university</span><span>5 × $1,200</span></div>
+      <div class="savings-row"><span>Textbooks</span><span>~$300</span></div>
+      <div class="savings-row"><span>Tutoring (optional)</span><span>~$500</span></div>
+      <div class="savings-row"><span>Admin fees</span><span>~$200</span></div>
+      <div class="savings-total"><span class="label">Total Cost</span><span class="value" style="color:#e05252;">$7,300</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <h2>Start Earning Credits<br>Before You Even Arrive</h2>
+  <p>$250 per credit. Directly transferred to your US university. No hidden fees.</p>
+  <div class="cta-btns">
+    <a href="index.html#contact" class="btn-primary">Book Free Consultation</a>
+    <a href="https://wa.me/919424312427?text=Hi%20Ednivo!%20I%27m%20interested%20in%20College%20Credits." target="_blank" class="btn-outline">Chat on WhatsApp</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo"><img src="assets/ednivo-logo.png" alt="Ednivo" class="brand-logo" style="height:32px;width:auto;max-width:150px;vertical-align:middle;object-fit:contain;"></div>
+  <p>© 2026 Ednivo.</p>
+</footer>
+
+</body>
+</html>

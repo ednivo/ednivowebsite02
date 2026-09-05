@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script async src="https://www.googletagmanager.com/gtag/js?id=G-XVCB9W38XJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XVCB9W38XJ');
+</script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ednivo Admin — Booking Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,700;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --ink:#0e1a2b;--ink2:#16263d;--saffron:#e8832a;--saffron2:#f5a455;
+      --green:#1a7a4a;--green2:#24a866;--white:#fff;--off:#f7f5f1;--muted:#6b7a8d;
+    }
+    body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--off);color:var(--ink);min-height:100vh;}
+
+    /* SIDEBAR */
+    .layout{display:flex;min-height:100vh;}
+    .sidebar{width:220px;background:var(--ink);flex-shrink:0;display:flex;flex-direction:column;padding:1.5rem 0;}
+    .sidebar-logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:var(--white);padding:0 1.5rem 1.5rem;border-bottom:1px solid rgba(255,255,255,0.08);}
+    .sidebar-logo em{font-style:normal;color:var(--saffron);}
+    .sidebar-nav{padding:1rem 0;flex:1;}
+    .nav-item{display:flex;align-items:center;gap:0.7rem;padding:0.75rem 1.5rem;color:rgba(255,255,255,0.6);font-size:0.85rem;font-weight:500;cursor:pointer;transition:all 0.15s;border-left:3px solid transparent;}
+    .nav-item:hover{color:var(--white);background:rgba(255,255,255,0.05);}
+    .nav-item.active{color:var(--white);border-left-color:var(--saffron);background:rgba(232,131,42,0.1);}
+    .sidebar-footer{padding:1rem 1.5rem;border-top:1px solid rgba(255,255,255,0.08);font-size:0.75rem;color:rgba(255,255,255,0.3);}
+
+    /* MAIN */
+    .main{flex:1;overflow:auto;}
+    .topbar{background:var(--white);border-bottom:1px solid #e5e7eb;padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;}
+    .topbar-title{font-size:1.1rem;font-weight:700;color:var(--ink);}
+    .topbar-right{display:flex;align-items:center;gap:1rem;}
+    .admin-badge{background:rgba(232,131,42,0.1);color:var(--saffron);font-size:0.75rem;font-weight:700;padding:4px 10px;border-radius:20px;}
+
+    .content{padding:2rem;}
+
+    /* STATS CARDS */
+    .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2rem;}
+    .stat-card{background:var(--white);border-radius:12px;padding:1.3rem 1.5rem;box-shadow:0 1px 8px rgba(0,0,0,0.05);}
+    .stat-label{font-size:0.75rem;font-weight:600;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:0.5rem;}
+    .stat-value{font-size:2rem;font-weight:700;color:var(--ink);line-height:1;}
+    .stat-sub{font-size:0.78rem;color:var(--muted);margin-top:0.3rem;}
+    .stat-card.accent .stat-value{color:var(--saffron);}
+    .stat-card.green  .stat-value{color:var(--green2);}
+
+    /* FILTERS */
+    .filters{display:flex;gap:0.8rem;margin-bottom:1.5rem;flex-wrap:wrap;align-items:center;}
+    .filter-input,.filter-select{padding:0.55rem 0.9rem;border:1.5px solid #e5e7eb;border-radius:8px;font-size:0.83rem;font-family:'Plus Jakarta Sans',sans-serif;outline:none;background:var(--white);}
+    .filter-input:focus,.filter-select:focus{border-color:var(--saffron);}
+    .filter-btn{padding:0.55rem 1.1rem;background:var(--saffron);color:var(--white);border:none;border-radius:8px;font-size:0.83rem;font-weight:600;cursor:pointer;}
+    .filter-btn:hover{background:var(--saffron2);}
+    .filter-btn.secondary{background:var(--off);color:var(--ink);}
+
+    /* TABLE */
+    .table-wrap{background:var(--white);border-radius:12px;box-shadow:0 1px 8px rgba(0,0,0,0.05);overflow:hidden;}
+    .table-header{padding:1.2rem 1.5rem;border-bottom:1px solid #f0f0f0;display:flex;align-items:center;justify-content:space-between;}
+    .table-title{font-size:0.95rem;font-weight:700;color:var(--ink);}
+    .table-count{font-size:0.8rem;color:var(--muted);}
+    table{width:100%;border-collapse:collapse;font-size:0.83rem;}
+    th{text-align:left;padding:0.8rem 1rem;font-size:0.72rem;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;border-bottom:1px solid #f0f0f0;white-space:nowrap;}
+    td{padding:0.9rem 1rem;border-bottom:1px solid #f7f7f7;vertical-align:top;}
+    tr:last-child td{border-bottom:none;}
+    tr:hover td{background:#fafaf8;}
+    .student-name{font-weight:600;color:var(--ink);}
+    .student-email{font-size:0.78rem;color:var(--muted);margin-top:2px;}
+
+    /* STATUS BADGES */
+    .badge{display:inline-flex;align-items:center;padding:3px 10px;border-radius:20px;font-size:0.72rem;font-weight:700;letter-spacing:0.5px;}
+    .badge-confirmed{background:rgba(36,168,102,0.12);color:#0f6e56;}
+    .badge-cancelled{background:rgba(231,76,60,0.1);color:#c0392b;}
+    .badge-rescheduled{background:rgba(232,131,42,0.12);color:#c8730a;}
+    .badge-completed{background:rgba(26,122,74,0.12);color:var(--green);}
+    .badge-no_show{background:#f5f5f5;color:var(--muted);}
+
+    /* ACTION BUTTONS */
+    .action-row{display:flex;gap:0.4rem;}
+    .act-btn{padding:4px 10px;border-radius:6px;border:1px solid #e5e7eb;font-size:0.75rem;font-weight:600;cursor:pointer;background:var(--white);transition:all 0.15s;}
+    .act-btn:hover{border-color:var(--saffron);color:var(--saffron);}
+    .act-btn.danger:hover{border-color:#e74c3c;color:#e74c3c;}
+
+    /* PAGINATION */
+    .pagination{display:flex;align-items:center;justify-content:center;gap:0.5rem;padding:1.2rem;border-top:1px solid #f0f0f0;}
+    .page-btn{padding:5px 12px;border:1px solid #e5e7eb;border-radius:6px;font-size:0.8rem;cursor:pointer;background:var(--white);}
+    .page-btn:hover,.page-btn.active{background:var(--saffron);color:var(--white);border-color:var(--saffron);}
+
+    /* SOURCE CHART */
+    .charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2rem;}
+    .chart-card{background:var(--white);border-radius:12px;padding:1.5rem;box-shadow:0 1px 8px rgba(0,0,0,0.05);}
+    .chart-card-title{font-size:0.85rem;font-weight:700;color:var(--ink);margin-bottom:1.2rem;}
+    .bar-row{display:flex;align-items:center;gap:0.8rem;margin-bottom:0.7rem;font-size:0.8rem;}
+    .bar-label{width:120px;color:var(--muted);font-size:0.78rem;flex-shrink:0;}
+    .bar-track{flex:1;height:8px;background:#f0f0f0;border-radius:4px;overflow:hidden;}
+    .bar-fill{height:100%;background:var(--saffron);border-radius:4px;transition:width 0.6s ease;}
+    .bar-count{color:var(--ink);font-weight:600;width:30px;text-align:right;}
+
+    /* MODAL */
+    .modal-overlay{position:fixed;inset:0;background:rgba(14,26,43,0.5);z-index:1000;display:none;align-items:center;justify-content:center;}
+    .modal-overlay.open{display:flex;}
+    .modal{background:var(--white);border-radius:14px;padding:2rem;max-width:480px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,0.2);}
+    .modal-title{font-size:1.1rem;font-weight:700;margin-bottom:1.2rem;}
+    .modal-row{display:flex;justify-content:space-between;padding:0.6rem 0;border-bottom:1px solid #f0f0f0;font-size:0.85rem;}
+    .modal-row:last-of-type{border-bottom:none;}
+    .modal-label{color:var(--muted);}
+    .modal-value{font-weight:600;color:var(--ink);text-align:right;max-width:60%;}
+    .modal-actions{display:flex;gap:0.8rem;margin-top:1.5rem;}
+    .modal-btn{flex:1;padding:0.75rem;border-radius:8px;border:none;font-weight:700;font-size:0.88rem;cursor:pointer;}
+    .modal-btn.primary{background:var(--saffron);color:var(--white);}
+    .modal-btn.danger{background:#fff0f0;color:#c0392b;border:1px solid #fcc;}
+    .modal-btn.close{background:var(--off);color:var(--ink);}
+
+    /* AUTH */
+    .auth-screen{position:fixed;inset:0;background:var(--ink);display:flex;align-items:center;justify-content:center;z-index:9999;}
+    .auth-box{background:var(--ink2);border-radius:16px;padding:2.5rem;width:360px;text-align:center;}
+    .auth-logo{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;color:var(--white);margin-bottom:0.5rem;}
+    .auth-logo em{color:var(--saffron);font-style:normal;}
+    .auth-sub{color:rgba(255,255,255,0.4);font-size:0.85rem;margin-bottom:2rem;}
+    .auth-input{width:100%;padding:0.85rem 1rem;background:rgba(255,255,255,0.07);border:1.5px solid rgba(255,255,255,0.1);border-radius:8px;color:var(--white);font-size:0.9rem;font-family:'Plus Jakarta Sans',sans-serif;margin-bottom:1rem;outline:none;}
+    .auth-input:focus{border-color:var(--saffron);}
+    .auth-btn{width:100%;padding:0.9rem;background:var(--saffron);color:var(--white);border:none;border-radius:8px;font-weight:700;font-size:0.95rem;cursor:pointer;}
+
+    .loading{text-align:center;padding:3rem;color:var(--muted);}
+    .empty-state{text-align:center;padding:3rem;color:var(--muted);font-size:0.9rem;}
+
+    @media(max-width:900px){
+      .sidebar{display:none;}
+      .stats-grid{grid-template-columns:1fr 1fr;}
+      .charts-grid{grid-template-columns:1fr;}
+    }
+  </style>
+  <link rel="icon" type="image/svg+xml" href="assets/ednivo-logo.png">
+  <link rel="stylesheet" href="assets/mobile.css">
+<link rel="stylesheet" href="gcc.css"><script src="site-engagement.js"></script></head>
+<body>
+
+<!-- AUTH SCREEN -->
+<div class="auth-screen" id="authScreen">
+  <div class="auth-box">
+    <div class="auth-logo" style="display:flex;align-items:center;gap:0.7rem;justify-content:center;"><img src="assets/ednivo-logo.png" alt="Ednivo" class="brand-logo" style="height:32px;width:auto;max-width:150px;vertical-align:middle;object-fit:contain;"></div>
+    <div class="auth-sub">Admin Dashboard</div>
+    <input class="auth-input" type="password" id="authKey" placeholder="Enter admin key" onkeydown="if(event.key==='Enter')login()"/>
+    <button class="auth-btn" onclick="login()">Access Dashboard →</button>
+    <div id="authErr" style="color:#e74c3c;font-size:0.8rem;margin-top:0.8rem;display:none;">Incorrect key. Try again.</div>
+  </div>
+</div>
+
+<!-- MAIN LAYOUT -->
+<div class="layout" id="appLayout" style="display:none;">
+  <div class="sidebar">
+    <div class="sidebar-logo" style="display:flex;align-items:center;gap:0.7rem;"><img src="assets/ednivo-logo.png" alt="Ednivo" class="brand-logo" style="height:32px;width:auto;max-width:150px;vertical-align:middle;object-fit:contain;"></div>
+    <nav class="sidebar-nav">
+      <div class="nav-item active" onclick="showView('bookings')">📅 Bookings</div>
+      <div class="nav-item" onclick="showView('stats')">📊 Analytics</div>
+      <div class="nav-item" onclick="showView('notifications')">🔔 Notifications</div>
+      <div class="nav-item" onclick="window.open('book.html','_blank')">🔗 Booking Page</div>
+    </nav>
+    <div class="sidebar-footer">Ednivo Admin v1.0</div>
+  </div>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-title" id="topbarTitle">Bookings</div>
+      <div class="topbar-right">
+        <span class="admin-badge">ADMIN</span>
+        <button onclick="logout()" style="background:none;border:none;cursor:pointer;color:var(--muted);font-size:0.85rem;">Sign out</button>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <!-- BOOKINGS VIEW -->
+      <div id="viewBookings">
+        <!-- Mini stats row -->
+        <div class="stats-grid" id="miniStats">
+          <div class="stat-card"><div class="stat-label">Total Bookings</div><div class="stat-value" id="s_total">—</div><div class="stat-sub">All time</div></div>
+          <div class="stat-card accent"><div class="stat-label">Today</div><div class="stat-value" id="s_today">—</div><div class="stat-sub">Sessions today</div></div>
+          <div class="stat-card green"><div class="stat-label">Upcoming</div><div class="stat-value" id="s_upcoming">—</div><div class="stat-sub">Confirmed ahead</div></div>
+          <div class="stat-card"><div class="stat-label">This Month</div><div class="stat-value" id="s_month">—</div><div class="stat-sub">Bookings</div></div>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters">
+          <input class="filter-input" type="date" id="fFrom" placeholder="From date"/>
+          <input class="filter-input" type="date" id="fTo" placeholder="To date"/>
+          <select class="filter-select" id="fStatus">
+            <option value="">All statuses</option>
+            <option value="confirmed">Confirmed</option>
+            <option value="completed">Completed</option>
+            <option value="cancelled">Cancelled</option>
+            <option value="rescheduled">Rescheduled</option>
+            <option value="no_show">No Show</option>
+          </select>
+          <select class="filter-select" id="fSource">
+            <option value="">All sources</option>
+            <option value="instagram_ad">Instagram Ad</option>
+            <option value="google_search">Google Search</option>
+            <option value="referral">Referral</option>
+            <option value="whatsapp">WhatsApp</option>
+            <option value="landing_page">Landing Page</option>
+          </select>
+          <button class="filter-btn" onclick="loadBookings(0)">Search</button>
+          <button class="filter-btn secondary" onclick="clearFilters()">Clear</button>
+          <button class="filter-btn" onclick="exportCSV()" style="background:var(--green);margin-left:auto;">⬇ Export CSV</button>
+        </div>
+
+        <div class="table-wrap">
+          <div class="table-header">
+            <span class="table-title">All Bookings</span>
+            <span class="table-count" id="tableCount"></span>
+          </div>
+          <div id="tableBody"><div class="loading">Loading bookings...</div></div>
+          <div class="pagination" id="pagination"></div>
+        </div>
+      </div>
+
+      <!-- STATS VIEW -->
+      <div id="viewStats" style="display:none;">
+        <div class="charts-grid">
+          <div class="chart-card">
+            <div class="chart-card-title">📣 Bookings by Source</div>
+            <div id="sourceChart"></div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-card-title">📚 Bookings by Exam</div>
+            <div id="examChart"></div>
+          </div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-card-title">📋 Status Breakdown</div>
+          <div id="statusChart"></div>
+        </div>
+      </div>
+
+      <!-- NOTIFICATIONS VIEW -->
+      <div id="viewNotifications" style="display:none;">
+        <div class="table-wrap">
+          <div class="table-header"><span class="table-title">Notification Delivery Log</span></div>
+          <div id="notifBody"><div class="loading">Loading...</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- BOOKING DETAIL MODAL -->
+<div class="modal-overlay" id="detailModal">
+  <div class="modal">
+    <div class="modal-title">📅 Booking Details</div>
+    <div id="modalContent"></div>
+    <div class="modal-actions">
+      <button class="modal-btn primary" id="modalMeetBtn" onclick="" style="display:none;">🎥 Join Meet</button>
+      <button class="modal-btn danger" id="modalCancelBtn" onclick="">Cancel Booking</button>
+      <button class="modal-btn close" onclick="closeModal()">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const API_BASE = 'https://your-backend.railway.app/api'; // ← UPDATE THIS
+let ADMIN_KEY = '';
+let currentOffset = 0;
+const PAGE_SIZE = 20;
+let allBookings = [];
+let statsData = {};
+
+// ─── AUTH ─────────────────────────────────────────
+function login() {
+  const key = document.getElementById('authKey').value;
+  if (!key) return;
+  ADMIN_KEY = key;
+  // Test the key
+  fetch(`${API_BASE}/admin/stats`, { headers: { 'x-admin-key': key } })
+    .then(r => {
+      if (!r.ok) throw new Error();
+      return r.json();
+    })
+    .then(data => {
+      statsData = data;
+      document.getElementById('authScreen').style.display = 'none';
+      document.getElementById('appLayout').style.display = 'flex';
+      loadDashboard();
+    })
+    .catch(() => {
+      document.getElementById('authErr').style.display = 'block';
+    });
+}
+function logout() {
+  ADMIN_KEY = '';
+  document.getElementById('authScreen').style.display = 'flex';
+  document.getElementById('appLayout').style.display = 'none';
+  document.getElementById('authKey').value = '';
+}
+
+// ─── NAVIGATION ───────────────────────────────────
+function showView(view) {
+  ['bookings','stats','notifications'].forEach(v => {
+    document.getElementById(`view${v.charAt(0).toUpperCase()+v.slice(1)}`).style.display = v === view ? 'block' : 'none';
+  });
+  document.querySelectorAll('.nav-item').forEach((el,i) => el.classList.toggle('active', i === ['bookings','stats','notifications'].indexOf(view)));
+  document.getElementById('topbarTitle').textContent = {bookings:'Bookings',stats:'Analytics',notifications:'Notification Log'}[view];
+
+  if (view === 'stats') renderStats();
+  if (view === 'notifications') loadNotifications();
+}
+
+// ─── DASHBOARD LOAD ───────────────────────────────
+function loadDashboard() {
+  updateMiniStats();
+  loadBookings(0);
+}
+
+function updateMiniStats() {
+  if (!statsData) return;
+  document.getElementById('s_total').textContent    = statsData.total_bookings    ?? '—';
+  document.getElementById('s_today').textContent    = statsData.today_sessions    ?? '—';
+  document.getElementById('s_upcoming').textContent = statsData.upcoming_sessions ?? '—';
+  document.getElementById('s_month').textContent    = '—';
+}
+
+// ─── LOAD BOOKINGS ────────────────────────────────
+function loadBookings(offset = 0) {
+  currentOffset = offset;
+  const params = new URLSearchParams({ limit: PAGE_SIZE, offset });
+  const from   = document.getElementById('fFrom').value;
+  const to     = document.getElementById('fTo').value;
+  const status = document.getElementById('fStatus').value;
+  const source = document.getElementById('fSource').value;
+  if (from)   params.set('from', from);
+  if (to)     params.set('to', to + 'T23:59:59');
+  if (status) params.set('status', status);
+  if (source) params.set('source', source);
+
+  document.getElementById('tableBody').innerHTML = '<div class="loading">Loading...</div>';
+
+  fetch(`${API_BASE}/admin/bookings?${params}`, { headers: { 'x-admin-key': ADMIN_KEY } })
+    .then(r => r.json())
+    .then(data => {
+      allBookings = data.bookings || [];
+      document.getElementById('tableCount').textContent = `${data.total} booking${data.total !== 1 ? 's' : ''}`;
+      renderTable(allBookings);
+      renderPagination(data.total, offset);
+    })
+    .catch(() => {
+      document.getElementById('tableBody').innerHTML = '<div class="empty-state">Could not load bookings. Check API connection.</div>';
+    });
+}
+
+function renderTable(bookings) {
+  if (!bookings.length) {
+    document.getElementById('tableBody').innerHTML = '<div class="empty-state">No bookings found.</div>';
+    return;
+  }
+  const rows = bookings.map(b => {
+    const dt = new Date(b.session_start).toLocaleString('en-IN', {
+      timeZone:'Asia/Kolkata', day:'numeric', month:'short', hour:'2-digit', minute:'2-digit'
+    });
+    return `
+    <tr>
+      <td>
+        <div class="student-name">${esc(b.student_name)}</div>
+        <div class="student-email">${esc(b.student_email)}</div>
+      </td>
+      <td>${esc(b.student_phone)}</td>
+      <td><strong>${esc(b.student_exam)}</strong></td>
+      <td style="white-space:nowrap;">${dt} IST</td>
+      <td><span class="badge badge-${b.status}">${b.status}</span></td>
+      <td>${b.source ? `<span style="font-size:0.78rem;color:var(--muted);">${esc(b.source)}</span>` : '—'}</td>
+      <td>
+        <div class="action-row">
+          <button class="act-btn" onclick="openDetail(${b.id})">View</button>
+          ${b.meeting_link ? `<a href="${esc(b.meeting_link)}" target="_blank" class="act-btn" style="text-decoration:none;">Meet</a>` : ''}
+          ${b.status === 'confirmed' ? `<button class="act-btn danger" onclick="cancelBooking('${b.booking_ref}', event)">Cancel</button>` : ''}
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+
+  document.getElementById('tableBody').innerHTML = `
+    <table>
+      <thead><tr>
+        <th>Student</th><th>Phone</th><th>Exam</th><th>Session</th><th>Status</th><th>Source</th><th>Actions</th>
+      </tr></thead>
+      <tbody>${rows}</tbody>
+    </table>`;
+}
+
+function renderPagination(total, offset) {
+  const pages = Math.ceil(total / PAGE_SIZE);
+  const current = Math.floor(offset / PAGE_SIZE);
+  if (pages <= 1) { document.getElementById('pagination').innerHTML = ''; return; }
+
+  let html = `<button class="page-btn" onclick="loadBookings(${Math.max(0,(current-1)*PAGE_SIZE)})" ${current===0?'disabled':''}>‹</button>`;
+  for (let i = 0; i < pages; i++) {
+    html += `<button class="page-btn ${i===current?'active':''}" onclick="loadBookings(${i*PAGE_SIZE})">${i+1}</button>`;
+  }
+  html += `<button class="page-btn" onclick="loadBookings(${Math.min((pages-1)*PAGE_SIZE,(current+1)*PAGE_SIZE)})" ${current===pages-1?'disabled':''}>›</button>`;
+  document.getElementById('pagination').innerHTML = html;
+}
+
+// ─── BOOKING DETAIL MODAL ─────────────────────────
+function openDetail(id) {
+  const b = allBookings.find(x => x.id === id);
+  if (!b) return;
+  const dt = new Date(b.session_start).toLocaleString('en-IN', {
+    timeZone:'Asia/Kolkata', weekday:'long', day:'numeric', month:'long', hour:'2-digit', minute:'2-digit'
+  });
+  document.getElementById('modalContent').innerHTML = `
+    <div class="modal-row"><span class="modal-label">Booking Ref</span><span class="modal-value" style="color:var(--saffron);font-family:monospace;font-size:1rem;">${b.booking_ref}</span></div>
+    <div class="modal-row"><span class="modal-label">Student</span><span class="modal-value">${esc(b.student_name)}</span></div>
+    <div class="modal-row"><span class="modal-label">Email</span><span class="modal-value">${esc(b.student_email)}</span></div>
+    <div class="modal-row"><span class="modal-label">Phone</span><span class="modal-value">${esc(b.student_phone)}</span></div>
+    <div class="modal-row"><span class="modal-label">Exam</span><span class="modal-value">${esc(b.student_exam)}</span></div>
+    <div class="modal-row"><span class="modal-label">Session</span><span class="modal-value">${dt} IST</span></div>
+    <div class="modal-row"><span class="modal-label">Duration</span><span class="modal-value">${b.duration_mins} mins</span></div>
+    <div class="modal-row"><span class="modal-label">Status</span><span class="modal-value"><span class="badge badge-${b.status}">${b.status}</span></span></div>
+    <div class="modal-row"><span class="modal-label">Source</span><span class="modal-value">${b.source || '—'}</span></div>
+    ${b.meeting_link ? `<div class="modal-row"><span class="modal-label">Meeting</span><span class="modal-value"><a href="${b.meeting_link}" target="_blank" style="color:var(--saffron);">Join Meet →</a></span></div>` : ''}
+    ${b.notes ? `<div class="modal-row"><span class="modal-label">Notes</span><span class="modal-value">${esc(b.notes)}</span></div>` : ''}
+  `;
+
+  const meetBtn   = document.getElementById('modalMeetBtn');
+  const cancelBtn = document.getElementById('modalCancelBtn');
+
+  if (b.meeting_link) { meetBtn.style.display='block'; meetBtn.onclick = () => window.open(b.meeting_link,'_blank'); }
+  else meetBtn.style.display = 'none';
+
+  if (b.status === 'confirmed') {
+    cancelBtn.style.display = 'block';
+    cancelBtn.onclick = () => cancelBooking(b.booking_ref);
+  } else {
+    cancelBtn.style.display = 'none';
+  }
+
+  document.getElementById('detailModal').classList.add('open');
+}
+function closeModal() { document.getElementById('detailModal').classList.remove('open'); }
+
+// ─── CANCEL BOOKING ───────────────────────────────
+function cancelBooking(ref, e) {
+  if (e) e.stopPropagation();
+  if (!confirm(`Cancel booking ${ref}?\n\nThis will notify the student.`)) return;
+  const reason = prompt('Reason for cancellation (optional):') || 'Cancelled by admin';
+
+  fetch(`${API_BASE}/bookings/${ref}/cancel`, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json', 'x-admin-key': ADMIN_KEY },
+    body: JSON.stringify({ cancel_reason: reason })
+  }).then(r => r.json()).then(d => {
+    if (d.success) { closeModal(); loadBookings(currentOffset); alert('Booking cancelled.'); }
+    else alert('Error: ' + d.error);
+  });
+}
+
+// ─── MARK STATUS ──────────────────────────────────
+function markStatus(id, status) {
+  fetch(`${API_BASE}/admin/bookings/${id}/status`, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json', 'x-admin-key': ADMIN_KEY },
+    body: JSON.stringify({ status })
+  }).then(() => loadBookings(currentOffset));
+}
+
+// ─── STATS / CHARTS ───────────────────────────────
+function renderStats() {
+  fetch(`${API_BASE}/admin/stats`, { headers: { 'x-admin-key': ADMIN_KEY } })
+    .then(r => r.json())
+    .then(data => {
+      renderBarChart('sourceChart', data.by_source, 'source');
+      renderBarChart('examChart',   data.by_exam,   'student_exam');
+      renderBarChart('statusChart', data.by_status, 'status');
+    });
+}
+
+function renderBarChart(containerId, rows, labelKey) {
+  if (!rows || !rows.length) { document.getElementById(containerId).innerHTML = '<div style="color:var(--muted);font-size:0.85rem;">No data yet.</div>'; return; }
+  const max = Math.max(...rows.map(r => parseInt(r.count)));
+  document.getElementById(containerId).innerHTML = rows.map(r => `
+    <div class="bar-row">
+      <div class="bar-label">${esc(r[labelKey] || 'Unknown')}</div>
+      <div class="bar-track"><div class="bar-fill" style="width:${Math.round(parseInt(r.count)/max*100)}%"></div></div>
+      <div class="bar-count">${r.count}</div>
+    </div>`).join('');
+}
+
+// ─── NOTIFICATIONS LOG ────────────────────────────
+function loadNotifications() {
+  fetch(`${API_BASE}/admin/notifications?limit=100`, { headers: { 'x-admin-key': ADMIN_KEY } })
+    .then(r => r.json())
+    .then(rows => {
+      if (!rows.length) { document.getElementById('notifBody').innerHTML = '<div class="empty-state">No notifications sent yet.</div>'; return; }
+      const html = `<table>
+        <thead><tr><th>Ref</th><th>Type</th><th>Channel</th><th>Recipient</th><th>Status</th><th>Sent At</th></tr></thead>
+        <tbody>${rows.map(r => `
+          <tr>
+            <td style="font-family:monospace;font-size:0.78rem;color:var(--saffron);">${r.booking_ref}</td>
+            <td style="font-size:0.8rem;">${r.type}</td>
+            <td><span class="badge" style="background:#f0f0f0;color:var(--ink);">${r.channel}</span></td>
+            <td style="font-size:0.78rem;">${esc(r.recipient)}</td>
+            <td><span class="badge ${r.status==='sent'?'badge-confirmed':'badge-cancelled'}">${r.status}</span></td>
+            <td style="font-size:0.78rem;color:var(--muted);">${new Date(r.sent_at).toLocaleString('en-IN',{timeZone:'Asia/Kolkata'})}</td>
+          </tr>`).join('')}
+        </tbody></table>`;
+      document.getElementById('notifBody').innerHTML = html;
+    });
+}
+
+// ─── EXPORT CSV ───────────────────────────────────
+function exportCSV() {
+  const params = new URLSearchParams({ limit: 9999, offset: 0 });
+  const from = document.getElementById('fFrom').value;
+  const to   = document.getElementById('fTo').value;
+  if (from) params.set('from', from);
+  if (to)   params.set('to', to+'T23:59:59');
+
+  fetch(`${API_BASE}/admin/bookings?${params}`, { headers: { 'x-admin-key': ADMIN_KEY } })
+    .then(r => r.json())
+    .then(data => {
+      const cols = ['booking_ref','student_name','student_email','student_phone','student_exam',
+                    'session_start','duration_mins','status','source','meeting_link','created_at'];
+      const rows = [cols.join(',')];
+      for (const b of data.bookings) {
+        rows.push(cols.map(c => `"${(b[c]||'').toString().replace(/"/g,'""')}"`).join(','));
+      }
+      const blob = new Blob([rows.join('\n')], { type: 'text/csv' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `ednivo-bookings-${new Date().toISOString().slice(0,10)}.csv`;
+      a.click();
+    });
+}
+
+function clearFilters() {
+  ['fFrom','fTo'].forEach(id => document.getElementById(id).value = '');
+  ['fStatus','fSource'].forEach(id => document.getElementById(id).selectedIndex = 0);
+  loadBookings(0);
+}
+
+function esc(s) {
+  if (!s) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// Close modal on overlay click
+document.getElementById('detailModal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+// Login on Enter
+document.getElementById('authKey').addEventListener('keydown', e => { if(e.key==='Enter') login(); });
+</script>
+</body>
+</html>

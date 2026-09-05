@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script async src="https://www.googletagmanager.com/gtag/js?id=G-XVCB9W38XJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XVCB9W38XJ');
+</script>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>US College Admission Probability Calculator 2026 – Ednivo</title>
+<meta name="description" content="Calculate your real admission chances at 50+ top US universities based on SAT score, GPA, activities, and profile strength. Free tool by Ednivo."/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+:root{--ink:#0e1a2b;--ink2:#16263d;--saffron:#e8832a;--saffron2:#f5a455;--green:#1a7a4a;--green2:#24a866;--red:#e05252;--blue:#2e6fd4;--white:#ffffff;--off:#f7f5f1;--muted:#6b7a8d;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--off);color:var(--ink);min-height:100vh;}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1rem 5%;background:rgba(14,26,43,0.97);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,0.06);}
+.logo{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;color:var(--white);text-decoration:none;}
+.logo em{color:var(--saffron);font-style:normal;}
+.back-btn{color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.82rem;border:1px solid rgba(255,255,255,0.15);padding:0.4rem 0.9rem;border-radius:6px;transition:all 0.2s;}
+.back-btn:hover{color:var(--saffron);border-color:var(--saffron);}
+
+/* HERO */
+.calc-hero{background:var(--ink);padding:8rem 5% 4rem;position:relative;overflow:hidden;text-align:center;}
+.calc-hero::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--saffron) 33%,var(--white) 33% 66%,var(--green) 66%);}
+.ch-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 60%,rgba(232,131,42,0.07),transparent 65%);pointer-events:none;}
+.ch-dots{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.03) 1px,transparent 1px);background-size:30px 30px;pointer-events:none;}
+.ch-inner{position:relative;z-index:1;}
+.ch-badge{display:inline-block;font-size:0.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--saffron);border:1px solid rgba(232,131,42,0.3);background:rgba(232,131,42,0.08);padding:0.35rem 1rem;border-radius:100px;margin-bottom:1.2rem;}
+.ch-inner h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,5vw,4rem);font-weight:700;color:var(--white);line-height:1.08;letter-spacing:-0.5px;margin-bottom:1rem;}
+.ch-inner h1 em{font-style:italic;background:linear-gradient(120deg,var(--saffron),var(--saffron2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.ch-inner p{font-size:1rem;color:rgba(255,255,255,0.6);line-height:1.75;font-weight:300;max-width:580px;margin:0 auto;}
+
+/* MAIN LAYOUT */
+.calc-wrap{max-width:1200px;margin:0 auto;padding:3rem 5%;display:grid;grid-template-columns:420px 1fr;gap:2.5rem;align-items:start;}
+
+/* INPUT PANEL */
+.input-panel{background:var(--white);border-radius:16px;padding:2rem;border:1px solid rgba(14,26,43,0.08);position:sticky;top:90px;}
+.panel-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:var(--ink);margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid rgba(14,26,43,0.08);}
+.form-group{margin-bottom:1.2rem;}
+.form-group label{display:block;font-size:0.78rem;font-weight:700;color:var(--ink);letter-spacing:0.3px;margin-bottom:0.4rem;}
+.form-group .hint{font-size:0.7rem;color:var(--muted);margin-bottom:0.5rem;}
+input[type="number"],select{width:100%;background:var(--off);border:1.5px solid rgba(14,26,43,0.1);border-radius:8px;padding:0.75rem 1rem;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.9rem;color:var(--ink);transition:border-color 0.2s;outline:none;appearance:none;}
+input[type="number"]:focus,select:focus{border-color:var(--saffron);background:var(--white);}
+.slider-wrap{margin-top:0.3rem;}
+input[type="range"]{width:100%;accent-color:var(--saffron);height:4px;cursor:pointer;}
+.slider-labels{display:flex;justify-content:space-between;font-size:0.7rem;color:var(--muted);margin-top:0.3rem;}
+.slider-val{display:inline-block;background:var(--saffron);color:var(--white);padding:0.15rem 0.6rem;border-radius:100px;font-size:0.75rem;font-weight:700;margin-top:0.4rem;}
+.checkbox-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;}
+.check-item{display:flex;align-items:center;gap:0.5rem;font-size:0.82rem;color:var(--ink);cursor:pointer;}
+.check-item input{width:16px;height:16px;accent-color:var(--saffron);flex-shrink:0;}
+.calc-btn{width:100%;margin-top:1.5rem;background:linear-gradient(135deg,var(--saffron),var(--saffron2));color:var(--white);border:none;border-radius:10px;padding:1rem;font-family:'Plus Jakarta Sans',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:0.6rem;}
+.calc-btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(232,131,42,0.35);}
+.reset-btn{width:100%;margin-top:0.6rem;background:transparent;color:var(--muted);border:1.5px solid rgba(14,26,43,0.1);border-radius:10px;padding:0.7rem;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.85rem;cursor:pointer;transition:all 0.2s;}
+.reset-btn:hover{border-color:var(--ink);color:var(--ink);}
+
+/* RESULTS PANEL */
+.results-panel{}
+.results-header{background:var(--white);border-radius:16px;padding:1.5rem 2rem;border:1px solid rgba(14,26,43,0.08);margin-bottom:1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.rh-left h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:var(--ink);}
+.rh-left p{font-size:0.82rem;color:var(--muted);}
+.profile-score-wrap{text-align:center;}
+.profile-score{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:700;color:var(--saffron);line-height:1;}
+.profile-score-lbl{font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
+.profile-bar{height:8px;background:rgba(14,26,43,0.08);border-radius:100px;margin-top:0.5rem;overflow:hidden;width:120px;}
+.profile-bar-fill{height:100%;border-radius:100px;background:linear-gradient(90deg,var(--saffron),var(--saffron2));transition:width 1s ease;}
+.results-placeholder{background:var(--white);border-radius:16px;border:2px dashed rgba(14,26,43,0.12);padding:4rem;text-align:center;}
+.rp-icon{font-size:3rem;margin-bottom:1rem;}
+.rp-title{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--ink);margin-bottom:0.5rem;}
+.rp-sub{font-size:0.88rem;color:var(--muted);line-height:1.7;}
+
+/* Uni cards */
+.tier-section{margin-bottom:2rem;}
+.tier-label{font-size:0.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem;}
+.tier-reach{color:var(--red);}
+.tier-target{color:var(--saffron);}
+.tier-safety{color:var(--green2);}
+.uni-cards{display:flex;flex-direction:column;gap:0.8rem;}
+.uni-card{background:var(--white);border-radius:12px;padding:1.2rem 1.4rem;border:1px solid rgba(14,26,43,0.08);display:flex;align-items:center;gap:1.2rem;transition:all 0.2s;}
+.uni-card:hover{border-color:var(--saffron);transform:translateX(4px);}
+.uc-rank{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:rgba(14,26,43,0.2);min-width:36px;text-align:center;}
+.uc-info{flex:1;}
+.uc-name{font-weight:700;font-size:0.95rem;color:var(--ink);margin-bottom:0.2rem;}
+.uc-details{font-size:0.75rem;color:var(--muted);display:flex;gap:1rem;flex-wrap:wrap;}
+.uc-chance-wrap{text-align:center;min-width:80px;}
+.uc-chance{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700;line-height:1;}
+.uc-chance-lbl{font-size:0.65rem;text-transform:uppercase;letter-spacing:1px;color:var(--muted);}
+.uc-bar{width:80px;height:5px;background:rgba(14,26,43,0.08);border-radius:100px;margin-top:0.4rem;overflow:hidden;}
+.uc-bar-fill{height:100%;border-radius:100px;transition:width 1s ease;}
+.chance-high{color:var(--green2);}.chance-high .uc-bar-fill{background:var(--green2);}
+.chance-med{color:var(--saffron);}.chance-med .uc-bar-fill{background:var(--saffron);}
+.chance-low{color:var(--red);}.chance-low .uc-bar-fill{background:var(--red);}
+.uc-tag{font-size:0.65rem;font-weight:700;padding:0.15rem 0.55rem;border-radius:100px;border:1px solid;}
+.tag-reach{background:rgba(224,82,82,0.08);color:var(--red);border-color:rgba(224,82,82,0.25);}
+.tag-target{background:rgba(232,131,42,0.08);color:var(--saffron);border-color:rgba(232,131,42,0.25);}
+.tag-safety{background:rgba(36,168,102,0.08);color:var(--green2);border-color:rgba(36,168,102,0.25);}
+
+/* CTA bottom */
+.calc-cta{background:var(--ink);border-radius:16px;padding:2.5rem;text-align:center;margin-top:1.5rem;}
+.calc-cta h3{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--white);margin-bottom:0.6rem;}
+.calc-cta p{font-size:0.88rem;color:rgba(255,255,255,0.5);margin-bottom:1.5rem;}
+.cta-row{display:flex;gap:0.8rem;justify-content:center;flex-wrap:wrap;}
+.cta-wa{background:var(--saffron);color:var(--white);padding:0.8rem 1.8rem;border-radius:8px;font-weight:700;font-size:0.88rem;text-decoration:none;transition:all 0.2s;}
+.cta-wa:hover{background:var(--saffron2);}
+.cta-diag{border:1.5px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.8);padding:0.8rem 1.8rem;border-radius:8px;font-weight:500;font-size:0.88rem;text-decoration:none;transition:all 0.2s;}
+.cta-diag:hover{border-color:var(--saffron);color:var(--saffron);}
+
+footer{background:var(--ink2);color:rgba(255,255,255,0.4);padding:1.5rem 5%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;border-top:1px solid rgba(255,255,255,0.05);margin-top:3rem;}
+.fl{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;color:var(--white);}.fl em{color:var(--saffron);font-style:normal;}
+footer p{font-size:0.8rem;}
+
+@media(max-width:900px){.calc-wrap{grid-template-columns:1fr;}.input-panel{position:static;}}
+</style>
+  <link rel="icon" type="image/svg+xml" href="assets/ednivo-logo.png">
+  <link rel="stylesheet" href="assets/mobile.css">
+<link rel="stylesheet" href="gcc.css"><link rel="stylesheet" href="public-updates.css"><script src="site-engagement.js"></script></head>
+<body>
+<nav><a href="index.html" class="logo"><img src="assets/ednivo-logo.png" alt="Ednivo" class="brand-logo" style="height:32px;width:auto;max-width:150px;vertical-align:middle;object-fit:contain;"></a><a href="index.html" class="back-btn">← Home</a></nav>
+
+<div class="calc-hero">
+  <div class="ch-bg"></div><div class="ch-dots"></div>
+  <div class="ch-inner">
+    <div class="ch-badge">🎓 Free Tool — 50+ Universities</div>
+    <h1>US College Admission<br><em>Probability Calculator</em></h1>
+    <p>Enter your SAT score, GPA, and profile details. Get realistic admission chances at 50+ top US universities — calculated using real admissions data from 2025.</p>
+  </div>
+</div>
+
+<div class="calc-wrap">
+  <!-- INPUT PANEL -->
+  <div class="input-panel">
+    <div class="panel-title">📝 Your Profile</div>
+
+    <div class="form-group">
+      <label>SAT Score</label>
+      <div class="hint">Enter your current or target SAT score (400–1600)</div>
+      <input type="number" id="satScore" min="400" max="1600" placeholder="e.g. 1380" oninput="updateSatDisplay()"/>
+      <div class="slider-wrap">
+        <input type="range" id="satSlider" min="400" max="1600" step="10" value="1200" oninput="syncSat(this)"/>
+        <div class="slider-labels"><span>400</span><span>1000</span><span>1300</span><span>1600</span></div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>GPA (Unweighted, out of 4.0)</label>
+      <div class="hint">Use your cumulative unweighted GPA</div>
+      <input type="number" id="gpa" min="2.0" max="4.0" step="0.01" placeholder="e.g. 3.75"/>
+      <div class="slider-wrap">
+        <input type="range" id="gpaSlider" min="200" max="400" step="1" value="350" oninput="syncGpa(this)"/>
+        <div class="slider-labels"><span>2.0</span><span>2.5</span><span>3.0</span><span>3.5</span><span>4.0</span></div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Course Rigor</label>
+      <select id="rigor">
+        <option value="3">Taking AP/IB courses (High)</option>
+        <option value="2">Taking Honors courses (Medium)</option>
+        <option value="1">Standard curriculum (Average)</option>
+        <option value="0">Basic curriculum (Below average)</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Extracurricular Strength</label>
+      <select id="ec">
+        <option value="3">National/International awards or leadership</option>
+        <option value="2">Strong school or state-level activities</option>
+        <option value="1">Some activities, limited leadership</option>
+        <option value="0">Minimal extracurriculars</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Essay Quality (Self-assessment)</label>
+      <select id="essays">
+        <option value="2">Strong — unique story, specific details</option>
+        <option value="1">Average — decent but not memorable</option>
+        <option value="0">Weak — generic or not started</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Additional Profile Factors</label>
+      <div class="checkbox-grid">
+        <label class="check-item"><input type="checkbox" id="legacy"> Legacy admission</label>
+        <label class="check-item"><input type="checkbox" id="athlete"> Recruited athlete</label>
+        <label class="check-item"><input type="checkbox" id="research"> Published research</label>
+        <label class="check-item"><input type="checkbox" id="firstgen"> First-gen   </label>
+        <label class="check-item"><input type="checkbox" id="intl" checked> International student</label>
+        <label class="check-item"><input type="checkbox" id="stem"> STEM major interest</label>
+      </div>
+    </div>
+      
+    <div class="form-group">
+      <label>Intended Major</label>
+      <select id="major">
+        <option value="stem">Engineering / Computer Science</option>
+        <option value="premed">Pre-Med / Biology</option>
+        <option value="business">Business / Economics</option>
+        <option value="humanities">Humanities / Social Sciences</option>
+        <option value="arts">Arts / Design</option>
+        <option value="undecided">Undecided</option>
+      </select>
+    </div>
+
+    <button class="calc-btn" onclick="calculate()">🎓 Calculate My Chances</button>
+    <button class="reset-btn" onclick="resetCalc()">↺ Reset</button>
+  </div>
+
+  <!-- RESULTS PANEL -->
+  <div class="results-panel" id="resultsPanel">
+    <div class="results-placeholder" id="placeholder">
+      <div class="rp-icon">🎓</div>
+      <div class="rp-title">Your Results Will Appear Here</div>
+      <p class="rp-sub">Fill in your profile on the left and click "Calculate My Chances" to see your admission probability at 50+ top US universities.</p>
+    </div>
+
+    <div id="resultsContent" style="display:none;">
+      <div class="results-header">
+        <div class="rh-left">
+          <h3 id="resultSummaryTitle">Your Admission Profile</h3>
+          <p id="resultSummaryText"></p>
+        </div>
+        <div class="profile-score-wrap">
+          <div class="profile-score" id="profileScore">–</div>
+          <div class="profile-score-lbl">Profile Score</div>
+          <div class="profile-bar"><div class="profile-bar-fill" id="profileBarFill" style="width:0%"></div></div>
+        </div>
+      </div>
+
+      <!-- REACH -->
+      <div class="tier-section" id="reachSection">
+        <div class="tier-label tier-reach">🔴 Reach Schools — Admission possible but requires exceptional application</div>
+        <div class="uni-cards" id="reachCards"></div>
+      </div>
+
+      <!-- TARGET -->
+      <div class="tier-section" id="targetSection">
+        <div class="tier-label tier-target">🟠 Target Schools — You are a competitive candidate</div>
+        <div class="uni-cards" id="targetCards"></div>
+      </div>
+
+      <!-- SAFETY -->
+      <div class="tier-section" id="safetySection">
+        <div class="tier-label tier-safety">🟢 Safety Schools — Strong likelihood of admission</div>
+        <div class="uni-cards" id="safetyCards"></div>
+      </div>
+
+      <div class="calc-cta">
+        <h3>Want a Personalised Admissions Plan?</h3>
+        <p>Our counsellors will analyse your profile in detail and build a targeted strategy for each university on your list.</p>
+        <div class="cta-row">
+          <a href="https://wa.me/919424312427?text=Hi%20Ednivo!%20I%20used%20the%20College%20Calculator%20and%20want%20a%20free%20consultation." target="_blank" class="cta-wa">📲 Book Free Strategy Call</a>
+          <a href="pricing.html" class="cta-diag">📊 Take SAT Diagnostic</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer><div class="fl"><img src="assets/ednivo-logo.png" alt="Ednivo" class="brand-logo" style="height:32px;width:auto;max-width:150px;vertical-align:middle;object-fit:contain;"></div><p>© 2026 Ednivo. Data based on 2025 admissions cycles. For guidance only.</p></footer>
+
+<script>
+/* ══════════════════════════════════════════════
+   UNIVERSITY DATABASE — 50 Schools
+══════════════════════════════════════════════ */
+var UNIVERSITIES = [
+  // Elite (acceptance <6%)
+  {name:'MIT',location:'Cambridge, MA',rank:1,baseRate:3.9,satMid:1560,gpaMid:4.0,tier:'elite',majors:['stem'],intlPenalty:0.5,note:'Need SAT 1520+ & extraordinary research/awards'},
+  {name:'Stanford University',location:'Stanford, CA',rank:2,baseRate:3.7,satMid:1550,gpaMid:3.96,tier:'elite',majors:['stem','business','humanities'],intlPenalty:0.6,note:'Holistic review; essays are critical'},
+  {name:'Harvard University',location:'Cambridge, MA',rank:3,baseRate:3.6,satMid:1560,gpaMid:4.0,tier:'elite',majors:['humanities','premed','business'],intlPenalty:0.5,note:'Need-blind for internationals; essays are decisive'},
+  {name:'Princeton University',location:'Princeton, NJ',rank:4,baseRate:4.0,satMid:1555,gpaMid:3.95,tier:'elite',majors:['humanities','stem'],intlPenalty:0.5,note:'Need-blind; strong financial aid available'},
+  {name:'Yale University',location:'New Haven, CT',rank:5,baseRate:4.6,satMid:1545,gpaMid:3.96,tier:'elite',majors:['humanities','premed'],intlPenalty:0.6,note:'Interview strongly recommended'},
+  // Very Selective (6–15%)
+  {name:'Columbia University',location:'New York, NY',rank:6,baseRate:5.1,satMid:1535,gpaMid:3.92,tier:'vselect',majors:['business','humanities','stem'],intlPenalty:0.7},
+  {name:'University of Pennsylvania',location:'Philadelphia, PA',rank:7,baseRate:5.9,satMid:1540,gpaMid:3.9,tier:'vselect',majors:['business','premed'],intlPenalty:0.7},
+  {name:'Duke University',location:'Durham, NC',rank:8,baseRate:6.6,satMid:1530,gpaMid:3.94,tier:'vselect',majors:['premed','business'],intlPenalty:0.75},
+  {name:'Northwestern University',location:'Evanston, IL',rank:9,baseRate:7.0,satMid:1520,gpaMid:3.92,tier:'vselect',majors:['journalism','business','stem'],intlPenalty:0.75},
+  {name:'Johns Hopkins University',location:'Baltimore, MD',rank:10,baseRate:7.4,satMid:1540,gpaMid:3.9,tier:'vselect',majors:['premed','stem'],intlPenalty:0.75},
+  {name:'Vanderbilt University',location:'Nashville, TN',rank:11,baseRate:6.7,satMid:1520,gpaMid:3.88,tier:'vselect',majors:['business','premed'],intlPenalty:0.8},
+  {name:'Rice University',location:'Houston, TX',rank:12,baseRate:8.7,satMid:1530,gpaMid:3.96,tier:'vselect',majors:['stem','business'],intlPenalty:0.8},
+  {name:'Notre Dame',location:'Notre Dame, IN',rank:13,baseRate:12.5,satMid:1490,gpaMid:3.9,tier:'vselect',majors:['business','premed'],intlPenalty:0.85},
+  {name:'Carnegie Mellon University',location:'Pittsburgh, PA',rank:14,baseRate:11.4,satMid:1530,gpaMid:3.88,tier:'vselect',majors:['stem','business','arts'],intlPenalty:0.85,note:'Top school for CS and Engineering globally'},
+  {name:'Georgetown University',location:'Washington, DC',rank:15,baseRate:12.0,satMid:1470,gpaMid:3.85,tier:'vselect',majors:['business','humanities'],intlPenalty:0.85},
+  // Selective (15–30%)
+  {name:'UC Berkeley',location:'Berkeley, CA',rank:16,baseRate:9.4,satMid:1415,gpaMid:3.89,tier:'select',majors:['stem','business'],intlPenalty:0.9,note:'Highly competitive for out-of-state & international'},
+  {name:'UCLA',location:'Los Angeles, CA',rank:17,baseRate:8.8,satMid:1420,gpaMid:3.9,tier:'select',majors:['stem','arts','premed'],intlPenalty:0.9},
+  {name:'University of Michigan',location:'Ann Arbor, MI',rank:18,baseRate:12.3,satMid:1445,gpaMid:3.9,tier:'select',majors:['stem','business'],intlPenalty:0.9},
+  {name:'University of Southern California',location:'Los Angeles, CA',rank:19,baseRate:13.8,satMid:1475,gpaMid:3.88,tier:'select',majors:['business','arts','stem'],intlPenalty:0.9},
+  {name:'Georgia Institute of Technology',location:'Atlanta, GA',rank:20,baseRate:14.8,satMid:1480,gpaMid:3.95,tier:'select',majors:['stem'],intlPenalty:0.9,note:'One of the best engineering schools in the US'},
+  {name:'Northeastern University',location:'Boston, MA',rank:21,baseRate:18.0,satMid:1490,gpaMid:3.9,tier:'select',majors:['stem','business'],intlPenalty:0.9,note:'World-leading co-op programme'},
+  {name:'University of Washington',location:'Seattle, WA',rank:22,baseRate:24.6,satMid:1350,gpaMid:3.75,tier:'select',majors:['stem','premed'],intlPenalty:0.95},
+  {name:'UC San Diego',location:'San Diego, CA',rank:23,baseRate:21.2,satMid:1400,gpaMid:3.86,tier:'select',majors:['stem','premed'],intlPenalty:0.95},
+  {name:'UC Santa Barbara',location:'Santa Barbara, CA',rank:24,baseRate:26.1,satMid:1350,gpaMid:3.84,tier:'select',majors:['stem','humanities'],intlPenalty:0.95},
+  {name:'University of Texas at Austin',location:'Austin, TX',rank:25,baseRate:18.2,satMid:1380,gpaMid:3.76,tier:'select',majors:['business','stem','premed'],intlPenalty:0.95},
+  // Accessible-Selective (30–50%)
+  {name:'Purdue University',location:'West Lafayette, IN',rank:26,baseRate:22.4,satMid:1370,gpaMid:3.7,tier:'accessible',majors:['stem','business'],intlPenalty:1.0,note:'Top engineering school, excellent for Indian students'},
+  {name:'University of Illinois Urbana-Champaign',location:'Urbana, IL',rank:27,baseRate:20.8,satMid:1390,gpaMid:3.8,tier:'accessible',majors:['stem','business'],intlPenalty:1.0},
+  {name:'Ohio State University',location:'Columbus, OH',rank:28,baseRate:32.1,satMid:1310,gpaMid:3.7,tier:'accessible',majors:['business','premed','stem'],intlPenalty:1.0},
+  {name:'Penn State University',location:'University Park, PA',rank:29,baseRate:28.4,satMid:1320,gpaMid:3.65,tier:'accessible',majors:['business','stem'],intlPenalty:1.0},
+  {name:'University of Florida',location:'Gainesville, FL',rank:30,baseRate:29.3,satMid:1340,gpaMid:3.8,tier:'accessible',majors:['premed','stem','business'],intlPenalty:1.0},
+  {name:'Michigan State University',location:'East Lansing, MI',rank:31,baseRate:31.4,satMid:1280,gpaMid:3.6,tier:'accessible',majors:['business','premed'],intlPenalty:1.0},
+  {name:'University of Wisconsin-Madison',location:'Madison, WI',rank:32,baseRate:22.7,satMid:1380,gpaMid:3.8,tier:'accessible',majors:['stem','business'],intlPenalty:1.0},
+  {name:'University of Minnesota',location:'Minneapolis, MN',rank:33,baseRate:36.9,satMid:1330,gpaMid:3.7,tier:'accessible',majors:['stem','premed'],intlPenalty:1.0},
+  {name:'Arizona State University',location:'Tempe, AZ',rank:34,baseRate:41.8,satMid:1270,gpaMid:3.5,tier:'accessible',majors:['business','stem','humanities'],intlPenalty:1.0,note:'Excellent scholarships for high-achieving internationals'},
+  {name:'Indiana University Bloomington',location:'Bloomington, IN',rank:35,baseRate:38.4,satMid:1280,gpaMid:3.55,tier:'accessible',majors:['business'],intlPenalty:1.0,note:'Kelley School of Business is world-ranked'},
+  {name:'University of Colorado Boulder',location:'Boulder, CO',rank:36,baseRate:40.2,satMid:1270,gpaMid:3.6,tier:'accessible',majors:['stem','humanities'],intlPenalty:1.0},
+  {name:'Rutgers University',location:'New Brunswick, NJ',rank:37,baseRate:33.8,satMid:1320,gpaMid:3.7,tier:'accessible',majors:['premed','stem','business'],intlPenalty:1.0},
+  {name:'University of Maryland',location:'College Park, MD',rank:38,baseRate:26.9,satMid:1380,gpaMid:3.84,tier:'accessible',majors:['stem','business'],intlPenalty:1.0},
+  {name:'University of Georgia',location:'Athens, GA',rank:39,baseRate:37.9,satMid:1310,gpaMid:3.8,tier:'accessible',majors:['premed','business'],intlPenalty:1.0},
+  {name:'Virginia Tech',location:'Blacksburg, VA',rank:40,baseRate:45.2,satMid:1280,gpaMid:3.7,tier:'accessible',majors:['stem'],intlPenalty:1.0},
+  // Open Access
+  {name:'University of Arizona',location:'Tucson, AZ',rank:41,baseRate:55.2,satMid:1220,gpaMid:3.4,tier:'open',majors:['stem','business','premed'],intlPenalty:1.0},
+  {name:'Texas A&M University',location:'College Station, TX',rank:42,baseRate:42.5,satMid:1270,gpaMid:3.6,tier:'open',majors:['stem','business'],intlPenalty:1.0},
+  {name:'University of Utah',location:'Salt Lake City, UT',rank:43,baseRate:61.2,satMid:1240,gpaMid:3.5,tier:'open',majors:['premed','stem'],intlPenalty:1.0},
+  {name:'University of Oregon',location:'Eugene, OR',rank:44,baseRate:58.8,satMid:1190,gpaMid:3.4,tier:'open',majors:['business','humanities'],intlPenalty:1.0},
+  {name:'Drexel University',location:'Philadelphia, PA',rank:45,baseRate:52.4,satMid:1310,gpaMid:3.6,tier:'open',majors:['stem','business'],intlPenalty:1.0,note:'Strong co-op program, good for career-focused students'},
+  {name:'Syracuse University',location:'Syracuse, NY',rank:46,baseRate:47.2,satMid:1260,gpaMid:3.5,tier:'open',majors:['humanities','arts','business'],intlPenalty:1.0},
+  {name:'University of South Florida',location:'Tampa, FL',rank:47,baseRate:58.4,satMid:1230,gpaMid:3.6,tier:'open',majors:['premed','stem'],intlPenalty:1.0},
+  {name:'Iowa State University',location:'Ames, IA',rank:48,baseRate:61.8,satMid:1210,gpaMid:3.45,tier:'open',majors:['stem','business'],intlPenalty:1.0},
+  {name:'Kansas State University',location:'Manhattan, KS',rank:49,baseRate:62.1,satMid:1180,gpaMid:3.4,tier:'open',majors:['stem','business'],intlPenalty:1.0},
+  {name:'University of Missouri',location:'Columbia, MO',rank:50,baseRate:79.2,satMid:1210,gpaMid:3.5,tier:'open',majors:['business','premed','humanities'],intlPenalty:1.0},
+];
+
+/* ── Sync sliders ── */
+function syncSat(el){
+  document.getElementById('satScore').value = el.value;
+}
+function syncGpa(el){
+  document.getElementById('gpa').value = (el.value/100).toFixed(2);
+}
+function updateSatDisplay(){
+  var v = document.getElementById('satScore').value;
+  if(v) document.getElementById('satSlider').value = v;
+}
+
+/* ── CALCULATE ── */
+function calculate(){
+  var sat   = parseInt(document.getElementById('satScore').value) || parseInt(document.getElementById('satSlider').value);
+  var gpa   = parseFloat(document.getElementById('gpa').value) || (parseFloat(document.getElementById('gpaSlider').value)/100);
+  var rigor = parseInt(document.getElementById('rigor').value);
+  var ec    = parseInt(document.getElementById('ec').value);
+  var essay = parseInt(document.getElementById('essays').value);
+  var legacy= document.getElementById('legacy').checked;
+  var athlete=document.getElementById('athlete').checked;
+  var research=document.getElementById('research').checked;
+  var firstgen=document.getElementById('firstgen').checked;
+  var intl  = document.getElementById('intl').checked;
+  var stem  = document.getElementById('stem').checked;
+  var major = document.getElementById('major').value;
+
+  // Profile score (0–100)
+  var satPct  = Math.min(100, (sat-400)/1200*40);
+  var gpaPct  = Math.min(100, (gpa-2.0)/2.0*30);
+  var extraPct= (rigor*3 + ec*5 + essay*4 + (legacy?5:0) + (athlete?5:0) + (research?4:0) + (firstgen?2:0))/100*30;
+  var profileScore = Math.round(satPct + gpaPct + extraPct*100/30*30/100);
+  profileScore = Math.min(99, profileScore);
+
+  document.getElementById('profileScore').textContent = profileScore;
+  document.getElementById('profileBarFill').style.width = profileScore + '%';
+
+  var summaryText = sat + ' SAT · ' + (gpa||'–') + ' GPA · ';
+  summaryText += profileScore >= 80 ? 'Elite Profile' : profileScore >= 60 ? 'Strong Profile' : profileScore >= 40 ? 'Competitive Profile' : 'Developing Profile';
+  document.getElementById('resultSummaryTitle').textContent = 'Your Results — ' + UNIVERSITIES.length + ' Universities';
+  document.getElementById('resultSummaryText').textContent = summaryText;
+
+  var reachHtml='', targetHtml='', safetyHtml='';
+  var reachCount=0, targetCount=0, safetyCount=0;
+
+  UNIVERSITIES.forEach(function(u){
+    // Calculate admission probability
+    var satDiff = (sat - u.satMid) / 200;  // how far above/below midpoint
+    var gpaDiff = ((gpa||3.5) - u.gpaMid) / 0.5;
+    var basePct = u.baseRate;
+    // Adjust for stats
+    var statAdj = (satDiff * 15) + (gpaDiff * 10);
+    // Adjust for profile
+    var profileAdj = (rigor*2) + (ec*3) + (essay*2) + (research?4:0) + (legacy?8:0) + (athlete?10:0) + (firstgen?3:0);
+    // International penalty
+    var intlAdj = intl ? (u.intlPenalty < 1 ? -15 : 0) : 5;
+    // Major bonus for stem schools
+    var majorAdj = (major === 'stem' && u.majors && u.majors.includes('stem')) ? 3 : 0;
+
+    var chance = basePct + statAdj + profileAdj*0.3 + intlAdj + majorAdj;
+    chance = Math.max(1, Math.min(95, Math.round(chance)));
+
+    // Tier classification
+    var studentTier;
+    if (chance < 20) studentTier = 'reach';
+    else if (chance < 55) studentTier = 'target';
+    else studentTier = 'safety';
+
+    var chanceClass = chance >= 55 ? 'chance-high' : chance >= 25 ? 'chance-med' : 'chance-low';
+    var tagClass = studentTier === 'reach' ? 'tag-reach' : studentTier === 'target' ? 'tag-target' : 'tag-safety';
+    var tagText = studentTier === 'reach' ? 'Reach' : studentTier === 'target' ? 'Target' : 'Safety';
+
+    var card = '<div class="uni-card">' +
+      '<div class="uc-rank">#' + u.rank + '</div>' +
+      '<div class="uc-info">' +
+        '<div class="uc-name">' + u.name + ' <span class="uc-tag ' + tagClass + '">' + tagText + '</span></div>' +
+        '<div class="uc-details"><span>📍 ' + u.location + '</span><span>SAT Mid: ' + u.satMid + '</span><span>Avg Accept: ' + u.baseRate + '%</span>' +
+        (u.note ? '<span style="color:var(--saffron);">💡 ' + u.note + '</span>' : '') + '</div>' +
+      '</div>' +
+      '<div class="uc-chance-wrap ' + chanceClass + '">' +
+        '<div class="uc-chance">' + chance + '%</div>' +
+        '<div class="uc-chance-lbl">Chance</div>' +
+        '<div class="uc-bar"><div class="uc-bar-fill" style="width:' + chance + '%"></div></div>' +
+      '</div>' +
+      '</div>';
+
+    if (studentTier === 'reach') { reachHtml += card; reachCount++; }
+    else if (studentTier === 'target') { targetHtml += card; targetCount++; }
+    else { safetyHtml += card; safetyCount++; }
+  });
+
+  document.getElementById('reachCards').innerHTML = reachHtml || '<div style="color:var(--muted);font-size:0.85rem;padding:1rem;">No reach schools at this profile level.</div>';
+  document.getElementById('targetCards').innerHTML = targetHtml;
+  document.getElementById('safetyCards').innerHTML = safetyHtml;
+
+  document.querySelector('.tier-label.tier-reach').textContent = '🔴 Reach Schools (' + reachCount + ') — Admission possible but requires exceptional application';
+  document.querySelector('.tier-label.tier-target').textContent = '🟠 Target Schools (' + targetCount + ') — You are a competitive candidate';
+  document.querySelector('.tier-label.tier-safety').textContent = '🟢 Safety Schools (' + safetyCount + ') — Strong likelihood of admission';
+
+  document.getElementById('placeholder').style.display = 'none';
+  document.getElementById('resultsContent').style.display = 'block';
+
+  // Animate bars
+  setTimeout(function(){
+    document.querySelectorAll('.uc-bar-fill').forEach(function(b){
+      var w = b.style.width; b.style.width='0%';
+      setTimeout(function(){ b.style.width = w; }, 50);
+    });
+  }, 100);
+
+  document.getElementById('resultsPanel').scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function resetCalc(){
+  document.getElementById('satScore').value='';
+  document.getElementById('satSlider').value=1200;
+  document.getElementById('gpa').value='';
+  document.getElementById('gpaSlider').value=350;
+  document.getElementById('rigor').value=3;
+  document.getElementById('ec').value=2;
+  document.getElementById('essays').value=1;
+  ['legacy','athlete','research','firstgen','stem'].forEach(function(id){ document.getElementById(id).checked=false; });
+  document.getElementById('intl').checked=true;
+  document.getElementById('placeholder').style.display='flex';
+  document.getElementById('resultsContent').style.display='none';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
