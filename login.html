@@ -10,7 +10,7 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Student Login — Ednivo</title>
 <link rel="stylesheet" href="gcc.css"><link rel="stylesheet" href="student-portal.css">
-<script src="supabase-config.js"></script><script src="db.js"></script><script src="auth.js"></script>
+<script src="supabase-config.js"></script><script src="db.js"></script><script src="auth.js"></script><script src="lead-storage.js"></script><script src="country-data.js"></script>
 <style>
 .login-page{min-height:100vh;background:#f8fafb;display:grid;grid-template-columns:1fr 520px}
 .login-visual{background:#0b2230;color:#fff;padding:70px 8vw;display:flex;align-items:center}.login-visual h1{font-size:clamp(44px,5vw,72px);letter-spacing:-4px;line-height:1.02;margin:18px 0}.login-visual h1 em{color:#ff8a5c;font-style:normal}.login-visual p{color:#b8c5cd;max-width:550px;font-size:17px}.checks{margin-top:30px;display:grid;gap:12px;color:#e8eef1;font-size:14px}.checks span{display:flex;gap:10px}.checks b{color:#ff9a72}.login-panel{padding:38px 28px;display:flex;align-items:center}.login-card{width:100%;background:#fff;border:1px solid #e5e9ed;border-radius:20px;padding:30px;box-shadow:0 20px 55px rgba(16,34,48,.08)}.login-card h2{font-size:28px;letter-spacing:-1.2px;margin:6px 0}.mutedx{color:#66727d;font-size:13px}.mode{display:grid;grid-template-columns:1fr 1fr;background:#f1f4f5;padding:4px;border-radius:10px;margin:22px 0}.mode button{border:0;background:transparent;padding:11px;border-radius:8px;font-weight:800;cursor:pointer;color:#5a6670}.mode button.active{background:#fff;box-shadow:0 2px 7px rgba(0,0,0,.06);color:#0b2230}.formx{display:grid;gap:12px}.fieldx label{font-size:12px;font-weight:800}.fieldx input,.fieldx select{width:100%;padding:12px;border:1px solid #dfe5e8;border-radius:9px;outline:none}.fieldx input:focus,.fieldx select:focus{border-color:#0d5961;box-shadow:0 0 0 3px rgba(13,89,97,.08)}.wide{width:100%;padding:13px;border-radius:9px;border:0;background:#ff6b2c;color:#fff;font-weight:900;cursor:pointer}.google{width:100%;padding:12px;border:1px solid #dfe5e8;background:#fff;border-radius:9px;font-weight:800;cursor:pointer}.divider{display:flex;align-items:center;gap:10px;color:#98a2aa;font-size:11px;margin:16px 0}.divider:before,.divider:after{content:"";height:1px;background:#e5e9ed;flex:1}.status{font-size:13px;margin-top:12px;min-height:20px}.status.success{color:#1d7d5d}.status.error{color:#b74444}.back{display:inline-block;margin-top:20px;color:#ff6b2c;font-size:13px;font-weight:800}.otpbox{display:none}.otpbox.show{display:block}.existing{background:#eef7f7;border-radius:10px;padding:11px;font-size:12px;color:#3d5961;margin-bottom:12px}
@@ -43,40 +43,35 @@
       <div style="margin-top:70px;max-width:640px"><span style="font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:#ff9a72;font-weight:900">Student workspace</span>
       <h1>Your SAT prep,<br><em>all in one place.</em></h1>
       <p>Track your plan, practice the skills that matter, join classes, review your syllabus and understand what your score means for your university goals.</p>
-      <div class="checks"><span><b>✓</b> One account for your SAT journey</span><span><b>✓</b> Email OTP — no password to remember</span><span><b>✓</b> Google sign-in for returning students</span></div></div>
+      <div class="checks"><span><b>✓</b> One account for your SAT journey</span><span><b>✓</b> Email OTP — no password to remember</span><span><b>✓</b> Simple account access from anywhere in the world</span></div></div>
     </div>
   </section>
   <section class="login-panel">
     <div class="login-card">
       <div class="mutedx">Ednivo Student Account</div>
-      <h2 id="heading">Welcome back</h2>
-      <p class="mutedx" id="sub">Log in with the email you already use for Ednivo.</p>
-      <div class="mode"><button id="returningTab" class="active">I have an account</button><button id="newTab">I'm new to Ednivo</button></div>
+      <h2 id="heading">Create your student account</h2>
+      <p class="mutedx" id="sub">We only ask for these details once.</p>
+      <div class="mode"><button id="returningTab">I have an account</button><button id="newTab" class="active">Create account</button></div>
 
-      <div id="returning">
+      <div id="returning" style="display:none">
         <form id="returnForm" class="formx">
           <div class="fieldx"><label>Email</label><input id="returnEmail" type="email" required placeholder="you@example.com"></div>
           <button class="wide">Send one-time code →</button>
         </form>
-        <div class="divider">OR</div>
-        <button class="google" id="returnGoogle">Continue with Google</button>
       </div>
 
-      <div id="new" style="display:none">
+      <div id="new">
         <form id="newForm" class="formx">
           <div class="fieldx"><label>Full name</label><input id="name" required placeholder="Your full name"></div>
           <div class="fieldx"><label>Email</label><input id="email" type="email" required placeholder="you@example.com"></div>
           <div style="display:grid;grid-template-columns:120px 1fr;gap:8px">
-            <div class="fieldx"><label>Code</label><select id="dial"><option>+971</option><option>+966</option><option>+974</option><option>+965</option><option>+973</option><option>+968</option></select></div>
+            <div class="fieldx"><label>Code</label><select id="dial"></select></div>
             <div class="fieldx"><label>Mobile number</label><input id="phone" type="tel" required placeholder="50 123 4567"></div>
           </div>
-          <div class="fieldx"><label>Country</label><select id="country"><option>UAE</option><option>Saudi Arabia</option><option>Qatar</option><option>Kuwait</option><option>Bahrain</option><option>Oman</option></select></div>
+          <div class="fieldx"><label>Country</label><select id="country"></select></div>
           <div class="fieldx"><label>Class / Grade</label><select id="grade"><option>9</option><option>10</option><option>11</option><option>12</option></select></div>
           <button class="wide">Create / continue with Ednivo →</button>
         </form>
-        <div class="divider">OR</div>
-        <button class="google" id="newGoogle">Continue with Google</button>
-        <p class="mutedx" style="margin-top:10px">Google will verify your email. We will ask for your mobile, country and class once, then remember them.</p>
       </div>
 
       <div id="otpBox" class="otpbox">
@@ -159,34 +154,14 @@
      location.href=redirect();
    }catch(e){st(e.message||'Verification failed.','error')}
  }
- async function google(){
-   try{
-     if(!(await configured())){ const detail=window.EDNIVO_SUPABASE_LOAD_ERROR || window.EDNIVO_DB.error?.message; throw new Error(detail || 'Supabase is not ready. Check the Supabase project URL/key and refresh.'); }
-     localStorage.setItem('ednivo_google_pending_v5','1');
-     const redirectUrl = new URL('login.html', location.href).href;
-     const {error}=await window.ednivoSupabase.auth.signInWithOAuth({
-       provider:'google',
-       options:{redirectTo:redirectUrl,queryParams:{access_type:'offline',prompt:'select_account'}}
-     });
-     if(error)throw error;
-   }catch(e){
-     const msg=e.message||'Google login failed.';
-     st(msg+' If Google shows a redirect error, add '+new URL('login.html',location.href).href+' to Supabase Authentication → URL Configuration → Redirect URLs.','error');
-   }
- }
  $('returningTab').onclick=()=>{ $('returningTab').classList.add('active');$('newTab').classList.remove('active');$('returning').style.display='block';$('new').style.display='none';$('heading').textContent='Welcome back';$('sub').textContent='Log in with the email you already use for Ednivo.';st('')};
  $('newTab').onclick=()=>{ $('newTab').classList.add('active');$('returningTab').classList.remove('active');$('new').style.display='block';$('returning').style.display='none';$('heading').textContent='Create your student account';$('sub').textContent='We only ask for these details once.';st('')};
  $('returnForm').onsubmit=e=>{e.preventDefault();const email=$('returnEmail').value.trim().toLowerCase();otpStart(email,{role:'student',email}).catch(e=>st(e.message||'Could not send code.','error'))};
  $('newForm').onsubmit=e=>{e.preventDefault();const p=profileFromForm();otpStart(p.email,p).catch(e=>st(e.message||'Could not send code.','error'))};
- $('returnGoogle').onclick=google;$('newGoogle').onclick=google;$('verifyBtn').onclick=verify; $('resendBtn').onclick=()=>{ if(Date.now()<resendUntil)return; const p=pending(); if(p) otpStart(p.email,p).catch(e=>st(e.message||'Could not resend code.','error')); };
- $('backBtn').onclick=()=>{$('otpBox').classList.remove('show');$('returning').style.display='block';$('new').style.display='none';$('otp').value='';st('')};
- (async()=>{try{if(isLoggedIn()){location.href=redirect();return}await window.EDNIVO_DB.ready;if(window.ednivoSupabase){const s=await window.ednivoSupabase.auth.getSession();if(s.data?.session){location.href=redirect();return}const pendingGoogle=localStorage.getItem('ednivo_google_pending_v5');if(pendingGoogle){localStorage.removeItem('ednivo_google_pending_v5');const u=s.data?.session?.user;if(u){} }}}catch(e){}})();
- // OAuth return is handled here too; existing Google user is never asked to create a second account.
- (async()=>{try{await window.EDNIVO_DB.ready;if(!window.ednivoSupabase)return;const s=await window.ednivoSupabase.auth.getSession();if(!s.data?.session)return;const u=s.data.session.user;const old=await window.EDNIVO_DB.getProfile(u.id);if(old){localStorage.setItem('pw_user',JSON.stringify({...old,loggedIn:true}));location.href=redirect();return;}
-   $('returning').style.display='none';$('new').style.display='none';$('otpBox').classList.remove('show');$('heading').textContent='Finish your student profile';$('sub').textContent='Google verified your email. Add these details once.'; $('newTab').style.display='none';$('returningTab').style.display='none';
-   $('new').style.display='block';$('new').innerHTML=`<form id="googleProfile" class="formx"><div class="fieldx"><label>Full name</label><input id="gname" required value="${String(u.user_metadata?.full_name||u.user_metadata?.name||'').replace(/"/g,'&quot;')}"></div><div class="fieldx"><label>Mobile number with country code</label><input id="gphone" required placeholder="+971 50 123 4567"></div><div class="fieldx"><label>Country</label><select id="gcountry"><option>UAE</option><option>Saudi Arabia</option><option>Qatar</option><option>Kuwait</option><option>Bahrain</option><option>Oman</option></select></div><div class="fieldx"><label>Class / Grade</label><select id="ggrade"><option>9</option><option>10</option><option>11</option><option>12</option></select></div><button class="wide">Save & open dashboard →</button></form>`;
-   $('googleProfile').onsubmit=async e=>{e.preventDefault();try{const profile={id:u.id,role:'student',name:$('gname').value.trim(),email:u.email,phone:$('gphone').value.trim(),country:$('gcountry').value,grade:$('ggrade').value,curriculum:'',target_score:null,test_date:null};await window.EDNIVO_DB.saveProfile(profile);localStorage.setItem('pw_user',JSON.stringify({...profile,loggedIn:true}));location.href=redirect()}catch(e){st(e.message||'Could not save profile.','error')}};
- }catch(e){}})();
+ $('verifyBtn').onclick=verify; $('resendBtn').onclick=()=>{ if(Date.now()<resendUntil)return; const p=pending(); if(p) otpStart(p.email,p).catch(e=>st(e.message||'Could not resend code.','error')); };
+ $('backBtn').onclick=()=>{$('otpBox').classList.remove('show');$('returning').style.display='none';$('new').style.display='block';$('newTab').classList.add('active');$('returningTab').classList.remove('active');$('otp').value='';st('')};
+ EdNivoCountryFields.fill('country','dial','India');
+ (async()=>{try{if(isLoggedIn()){location.href=redirect();return}await window.EDNIVO_DB.ready;if(window.ednivoSupabase){const ss=await window.ednivoSupabase.auth.getSession();if(ss.data?.session){location.href=redirect();return}}}catch(e){}})();
 })();
 </script>
 </body></html>

@@ -3,7 +3,7 @@
   const WA='https://wa.me/919424312427?text='+encodeURIComponent('Hi Ednivo! I need help with SAT preparation.');
   function esc(v){return String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
   function openHelp(reason){
-    if(document.getElementById('ednivoHelpModal')) return;
+    if(document.getElementById('ednivoHelpModal') || document.getElementById('ednivoLeadGate')) return;
     const wrap=document.createElement('div');wrap.id='ednivoHelpModal';wrap.className='engage-overlay';
     wrap.innerHTML=`<div class="engage-card" role="dialog" aria-modal="true" aria-labelledby="helpTitle">
       <button class="engage-close" aria-label="Close">×</button>
@@ -26,7 +26,7 @@
       e.preventDefault(); const fd=new FormData(e.currentTarget), email=fd.get('email'), phone=fd.get('phone'), status=wrap.querySelector('#helpStatus');
       status.textContent='Sending…';
       try{
-        if(window.EDNIVO_DB?.configured){await window.EDNIVO_DB.ready; await window.ednivoSupabase.from('leads').insert({email,phone,source:'website-assistance-popup',role:'student'});}
+        if(window.EdNivoSaveLeadEverywhere){await window.EdNivoSaveLeadEverywhere({email,phone,source:'website-assistance-popup'});}else if(window.EDNIVO_DB?.configured){await window.EDNIVO_DB.ready; await window.ednivoSupabase.from('leads').insert({email,phone,source:'website-assistance-popup',role:'student'});}
         localStorage.setItem('ednivo_assistance_lead',JSON.stringify({email,phone,reason,created_at:new Date().toISOString()}));
         status.textContent='Our Team will get back to you.'; e.currentTarget.reset();
         setTimeout(close,1400);
@@ -50,8 +50,8 @@
     const isStudentArea = !!document.querySelector('.student-app') || document.body.classList.contains('login-page') || location.pathname.endsWith('/login.html') || location.pathname.endsWith('login.html');
     if(!isStudentArea) addFloatingWhatsApp();
     if(sessionStorage.getItem('ednivo_help_seen')) return;
-    window.setTimeout(()=>openHelp('10-second visit'),10000);
-    document.addEventListener('mouseleave',e=>{if(e.clientY<=0&&!sessionStorage.getItem('ednivo_help_seen')) openHelp('exit intent')},{once:true});
+    window.setTimeout(()=>{if(!document.getElementById('ednivoLeadGate')) openHelp('10-second visit')},10000);
+    document.addEventListener('mouseleave',e=>{if(e.clientY<=0&&!sessionStorage.getItem('ednivo_help_seen')&&!document.getElementById('ednivoLeadGate')) openHelp('exit intent')},{once:true});
   }
   document.addEventListener('DOMContentLoaded',setup);
   window.EdNivoHelp=openHelp;

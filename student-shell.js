@@ -47,7 +47,8 @@
   document.addEventListener('DOMContentLoaded',async()=>{
     if(!document.querySelector('.student-app')) return;
     const p=await getProfile();
-    if(!p || !p.email){location.href='login.html?redirect='+encodeURIComponent(location.href);return;}
+    const publicLeadPage=['calculator','syllabus'].includes(document.body.dataset.portal);
+    if(!p || !p.email){if(publicLeadPage)return;location.href='login.html?redirect='+encodeURIComponent(location.href);return;}
     render(p);
   });
 })();
