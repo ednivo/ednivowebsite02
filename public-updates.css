@@ -64,3 +64,17 @@
   .checkout-actions .btn{width:100%}
   .floating-wa{width:52px;height:52px}
 }
+
+/* Mobile hamburger navigation */
+.mobile-menu-toggle{display:none;width:44px;height:44px;padding:10px;border:1px solid var(--line);border-radius:11px;background:#fff;cursor:pointer;align-items:center;justify-content:center;flex-direction:column;gap:5px;position:relative;z-index:1002}
+.mobile-menu-toggle span{display:block;width:21px;height:2px;border-radius:3px;background:var(--ink)}
+.mobile-nav-overlay{display:none;position:fixed;inset:0;background:rgba(12,20,34,.48);backdrop-filter:blur(3px);z-index:998}
+.mobile-nav{display:none;position:fixed;top:0;right:0;width:min(86vw,360px);height:100dvh;background:#fff;z-index:999;padding:18px 20px 28px;box-shadow:-20px 0 60px rgba(16,24,40,.18);overflow-y:auto}
+.mobile-nav-head{display:flex;align-items:center;justify-content:space-between;padding-bottom:16px;margin-bottom:8px;border-bottom:1px solid var(--line)}
+.mobile-menu-close{width:42px;height:42px;border:0;background:#f4f6f8;border-radius:11px;font-size:29px;line-height:1;cursor:pointer;color:var(--ink)}
+.mobile-nav>a{display:flex;align-items:center;min-height:50px;padding:10px 4px;border-bottom:1px solid #eef1f5;font-size:15px;font-weight:700;color:#344054}
+.mobile-nav>a:hover{color:var(--orange)}
+body.mobile-nav-open{overflow:hidden}
+body.mobile-nav-open .mobile-nav-overlay{display:block}
+body.mobile-nav-open .mobile-nav{display:block}
+@media(max-width:900px){.mobile-menu-toggle{display:flex}.mobile.btn{display:none!important}.topin{gap:12px}.top .logo{font-size:26px}}
