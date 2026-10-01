@@ -26,7 +26,7 @@
       e.preventDefault(); const fd=new FormData(e.currentTarget), email=fd.get('email'), phone=fd.get('phone'), status=wrap.querySelector('#helpStatus');
       status.textContent='Sending…';
       try{
-        if(window.EdNivoSaveLeadEverywhere){await window.EdNivoSaveLeadEverywhere({email,phone,source:'website-assistance-popup'});}else if(window.EDNIVO_DB?.configured){await window.EDNIVO_DB.ready; await window.ednivoSupabase.from('leads').insert({email,phone,source:'website-assistance-popup',role:'student'});}
+        if(window.EdNivoSaveLeadEverywhere){await window.EdNivoSaveLeadEverywhere({name:'Not provided',email,phone,source:'website-assistance-popup',page_url:location.href});}else if(window.EDNIVO_DB?.configured){await window.EDNIVO_DB.ready; await window.ednivoSupabase.from('leads').insert({name:'Not provided',email,phone,source:'website-assistance-popup',page_url:location.href});}
         localStorage.setItem('ednivo_assistance_lead',JSON.stringify({email,phone,reason,created_at:new Date().toISOString()}));
         status.textContent='Our Team will get back to you.'; e.currentTarget.reset();
         setTimeout(close,1400);

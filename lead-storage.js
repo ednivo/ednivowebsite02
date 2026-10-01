@@ -1,42 +1,49 @@
-/* Shared lead storage: Supabase + the Google Sheet endpoint already used by Ednivo registration. */
+/* Shared Ednivo lead storage: save independently to Supabase + Google Sheets. */
 (function(){
+  const SHEET_WEB_APP_URL='https://script.google.com/macros/s/AKfycbzI4NpaGcHm_25hJplHXXzf2f2-sYN4qr37IbkVSjawnjAHausQuHjXDLVCV3_elIHl/exec';
+
   window.EdNivoSaveLeadEverywhere = async function(data){
+    const rawPhone=String(data.phone||'').trim();
     const lead={
-      name:String(data.name||'').trim(),
+      name:String(data.name||'').trim() || 'Not provided',
       email:String(data.email||'').trim().toLowerCase(),
-      phone:String(data.phone||'').trim(),
+      phone:rawPhone,
+      country_code:String(data.country_code||'').trim(),
+      country:String(data.country||'').trim(),
       source:String(data.source||'website-lead').trim(),
-      role:'student'
+      page_url:String(data.page_url||location.href).trim()
     };
-    const jobs=[];
-    jobs.push((async()=>{
+
+    const supabaseJob=(async()=>{
       try{
         await window.EDNIVO_DB?.ready;
-        if(window.ednivoSupabase){
-          const {error}=await window.ednivoSupabase.from('leads').insert(lead);
-          if(error) throw error;
-          return {supabase:true};
-        }
-        return {supabase:false};
-      }catch(e){console.warn('Supabase lead save failed:',e);return {supabase:false,error:e};}
-    })());
-    jobs.push((async()=>{
+        if(!window.ednivoSupabase) throw new Error('Supabase client unavailable');
+        const {error}=await window.ednivoSupabase.from('leads').insert(lead);
+        if(error) throw error;
+        return {supabase:true};
+      }catch(error){
+        console.warn('Supabase lead save failed:',error);
+        return {supabase:false,error:String(error?.message||error)};
+      }
+    })();
+
+    const sheetJob=(async()=>{
       try{
-        if(typeof window.SCRIPT_URL!=='string'||!window.SCRIPT_URL) return {sheet:false};
-        const fd=new FormData();
-        fd.append('sheetTarget','newUser');
-        fd.append('role','lead');
-        fd.append('name',lead.name);
-        fd.append('email',lead.email);
-        fd.append('phone',lead.phone);
-        fd.append('grade','Lead source: '+lead.source);
-        fd.append('country','');
-        fd.append('source',lead.source);
-        fd.append('signupDate',new Date().toLocaleString());
-        await fetch(window.SCRIPT_URL,{method:'POST',mode:'no-cors',body:fd});
+        /* text/plain keeps this a CORS-simple request; Apps Script reads e.postData.contents as JSON. */
+        await fetch(SHEET_WEB_APP_URL,{
+          method:'POST',
+          mode:'no-cors',
+          headers:{'Content-Type':'text/plain;charset=utf-8'},
+          body:JSON.stringify(lead)
+        });
         return {sheet:true};
-      }catch(e){console.warn('Google Sheet lead save failed:',e);return {sheet:false,error:e};}
-    })());
-    return Promise.all(jobs);
+      }catch(error){
+        console.warn('Google Sheet lead save failed:',error);
+        return {sheet:false,error:String(error?.message||error)};
+      }
+    })();
+
+    const [supabase,sheet]=await Promise.all([supabaseJob,sheetJob]);
+    return {supabase,sheet};
   };
 })();
