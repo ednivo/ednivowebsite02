@@ -1,18 +1,19 @@
 <!DOCTYPE html>
+
 <html lang="en">
-<head><script async src="https://www.googletagmanager.com/gtag/js?id=G-XVCB9W38XJ"></script>
+<head><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-XVCB9W38XJ"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-XVCB9W38XJ');
 </script>
-<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<link rel="canonical" href="https://ednivo.in/college-calculator.html">
-<title>US College Admission Probability Calculator 2026 – Ednivo</title>
-<meta name="description" content="Calculate your real admission chances at 50+ top US universities based on SAT score, GPA, activities, and profile strength. Free tool by Ednivo."/>
-<meta name="robots" content="index,follow,max-image-preview:large">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://ednivo.in/college-calculator.html" rel="canonical"/>
+<title>College Planning Calculator | Ednivo</title>
+<meta content="Use Ednivo’s college planning calculator to organise your university research and compare planning considerations." name="description"/>
+<meta content="index,follow,max-image-preview:large" name="robots"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
@@ -115,163 +116,145 @@ footer p{font-size:0.8rem;}
 
 @media(max-width:900px){.calc-wrap{grid-template-columns:1fr;}.input-panel{position:static;}}
 </style>
-  <link rel="icon" type="image/svg+xml" href="assets/ednivo-logo.png">
-  <link rel="stylesheet" href="assets/mobile.css">
-<link rel="stylesheet" href="gcc.css"><link rel="stylesheet" href="public-updates.css"><script defer src="site-engagement.js"></script>
-<meta property="og:type" content="website">
-<meta property="og:title" content="US College Admission Probability Calculator 2026 – Ednivo">
-<meta property="og:description" content="Use Ednivo’s college admissions calculator to explore how SAT scores, GPA and profile factors relate to university planning.">
-<meta property="og:url" content="https://ednivo.in/college-calculator.html">
-<meta property="og:site_name" content="Ednivo">
-<meta name="twitter:card" content="summary">
-</head>
+<link href="assets/ednivo-logo.png" rel="icon" type="image/svg+xml"/>
+<link href="assets/mobile.css" rel="stylesheet"/>
+<link href="gcc.css" rel="stylesheet"/><link href="public-updates.css" rel="stylesheet"/><script defer="" src="site-engagement.js"></script>
+<meta content="website" property="og:type"/>
+<meta content="College Planning Calculator | Ednivo" property="og:title"/>
+<meta content="Use Ednivo’s college planning calculator to organise your university research and compare planning considerations." property="og:description"/>
+<meta content="https://ednivo.in/college-calculator.html" property="og:url"/>
+<meta content="Ednivo" property="og:site_name"/>
+<meta content="summary" name="twitter:card"/>
+</link><meta content="College Planning Calculator | Ednivo" name="twitter:title"/><meta content="Use Ednivo’s college planning calculator to organise your university research and compare planning considerations." name="twitter:description"/></head>
 <body>
-<nav><a href="index.html" class="logo"><img src="assets/ednivo-logo.png" alt="Ednivo" class="brand-logo" style="height:32px;width:auto;max-width:150px;vertical-align:middle;object-fit:contain;"></a><a href="index.html" class="back-btn">← Home</a></nav>
-
+<nav><a class="logo" href="index.html"><img alt="Ednivo" class="brand-logo" src="assets/ednivo-logo.png" style="height:32px;width:auto;max-width:150px;vertical-align:middle;object-fit:contain;"/></a><a class="back-btn" href="index.html">← Home</a></nav>
 <div class="calc-hero">
-  <div class="ch-bg"></div><div class="ch-dots"></div>
-  <div class="ch-inner">
-    <div class="ch-badge">🎓 Free Tool — 50+ Universities</div>
-    <h1>US College Admission<br><em>Probability Calculator</em></h1>
-    <p>Enter your SAT score, GPA, and profile details. Get realistic admission chances at 50+ top US universities — calculated using real admissions data from 2025.</p>
-  </div>
+<div class="ch-bg"></div><div class="ch-dots"></div>
+<div class="ch-inner">
+<div class="ch-badge">🎓 Free Tool — 50+ Universities</div>
+<h1>US College Admission<br/><em>Probability Calculator</em></h1>
+<p>Enter your SAT score, GPA, and profile details. Get realistic admission chances at 50+ top US universities — calculated using real admissions data from 2025.</p>
 </div>
-
+</div>
 <div class="calc-wrap">
-  <!-- INPUT PANEL -->
-  <div class="input-panel">
-    <div class="panel-title">📝 Your Profile</div>
-
-    <div class="form-group">
-      <label>SAT Score</label>
-      <div class="hint">Enter your current or target SAT score (400–1600)</div>
-      <input type="number" id="satScore" min="400" max="1600" placeholder="e.g. 1380" oninput="updateSatDisplay()"/>
-      <div class="slider-wrap">
-        <input type="range" id="satSlider" min="400" max="1600" step="10" value="1200" oninput="syncSat(this)"/>
-        <div class="slider-labels"><span>400</span><span>1000</span><span>1300</span><span>1600</span></div>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label>GPA (Unweighted, out of 4.0)</label>
-      <div class="hint">Use your cumulative unweighted GPA</div>
-      <input type="number" id="gpa" min="2.0" max="4.0" step="0.01" placeholder="e.g. 3.75"/>
-      <div class="slider-wrap">
-        <input type="range" id="gpaSlider" min="200" max="400" step="1" value="350" oninput="syncGpa(this)"/>
-        <div class="slider-labels"><span>2.0</span><span>2.5</span><span>3.0</span><span>3.5</span><span>4.0</span></div>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label>Course Rigor</label>
-      <select id="rigor">
-        <option value="3">Taking AP/IB courses (High)</option>
-        <option value="2">Taking Honors courses (Medium)</option>
-        <option value="1">Standard curriculum (Average)</option>
-        <option value="0">Basic curriculum (Below average)</option>
-      </select>
-    </div>
-
-    <div class="form-group">
-      <label>Extracurricular Strength</label>
-      <select id="ec">
-        <option value="3">National/International awards or leadership</option>
-        <option value="2">Strong school or state-level activities</option>
-        <option value="1">Some activities, limited leadership</option>
-        <option value="0">Minimal extracurriculars</option>
-      </select>
-    </div>
-
-    <div class="form-group">
-      <label>Essay Quality (Self-assessment)</label>
-      <select id="essays">
-        <option value="2">Strong — unique story, specific details</option>
-        <option value="1">Average — decent but not memorable</option>
-        <option value="0">Weak — generic or not started</option>
-      </select>
-    </div>
-
-    <div class="form-group">
-      <label>Additional Profile Factors</label>
-      <div class="checkbox-grid">
-        <label class="check-item"><input type="checkbox" id="legacy"> Legacy admission</label>
-        <label class="check-item"><input type="checkbox" id="athlete"> Recruited athlete</label>
-        <label class="check-item"><input type="checkbox" id="research"> Published research</label>
-        <label class="check-item"><input type="checkbox" id="firstgen"> First-gen   </label>
-        <label class="check-item"><input type="checkbox" id="intl" checked> International student</label>
-        <label class="check-item"><input type="checkbox" id="stem"> STEM major interest</label>
-      </div>
-    </div>
-      
-    <div class="form-group">
-      <label>Intended Major</label>
-      <select id="major">
-        <option value="stem">Engineering / Computer Science</option>
-        <option value="premed">Pre-Med / Biology</option>
-        <option value="business">Business / Economics</option>
-        <option value="humanities">Humanities / Social Sciences</option>
-        <option value="arts">Arts / Design</option>
-        <option value="undecided">Undecided</option>
-      </select>
-    </div>
-
-    <button class="calc-btn" onclick="calculate()">🎓 Calculate My Chances</button>
-    <button class="reset-btn" onclick="resetCalc()">↺ Reset</button>
-  </div>
-
-  <!-- RESULTS PANEL -->
-  <div class="results-panel" id="resultsPanel">
-    <div class="results-placeholder" id="placeholder">
-      <div class="rp-icon">🎓</div>
-      <div class="rp-title">Your Results Will Appear Here</div>
-      <p class="rp-sub">Fill in your profile on the left and click "Calculate My Chances" to see your admission probability at 50+ top US universities.</p>
-    </div>
-
-    <div id="resultsContent" style="display:none;">
-      <div class="results-header">
-        <div class="rh-left">
-          <h3 id="resultSummaryTitle">Your Admission Profile</h3>
-          <p id="resultSummaryText"></p>
-        </div>
-        <div class="profile-score-wrap">
-          <div class="profile-score" id="profileScore">–</div>
-          <div class="profile-score-lbl">Profile Score</div>
-          <div class="profile-bar"><div class="profile-bar-fill" id="profileBarFill" style="width:0%"></div></div>
-        </div>
-      </div>
-
-      <!-- REACH -->
-      <div class="tier-section" id="reachSection">
-        <div class="tier-label tier-reach">🔴 Reach Schools — Admission possible but requires exceptional application</div>
-        <div class="uni-cards" id="reachCards"></div>
-      </div>
-
-      <!-- TARGET -->
-      <div class="tier-section" id="targetSection">
-        <div class="tier-label tier-target">🟠 Target Schools — You are a competitive candidate</div>
-        <div class="uni-cards" id="targetCards"></div>
-      </div>
-
-      <!-- SAFETY -->
-      <div class="tier-section" id="safetySection">
-        <div class="tier-label tier-safety">🟢 Safety Schools — Strong likelihood of admission</div>
-        <div class="uni-cards" id="safetyCards"></div>
-      </div>
-
-      <div class="calc-cta">
-        <h3>Want a Personalised Admissions Plan?</h3>
-        <p>Our counsellors will analyse your profile in detail and build a targeted strategy for each university on your list.</p>
-        <div class="cta-row">
-          <a href="https://wa.me/919424312427?text=Hi%20Ednivo!%20I%20used%20the%20College%20Calculator%20and%20want%20a%20free%20consultation." target="_blank" class="cta-wa">📲 Book Free Strategy Call</a>
-          <a href="pricing.html" class="cta-diag">📊 Take SAT Diagnostic</a>
-        </div>
-      </div>
-    </div>
-  </div>
+<!-- INPUT PANEL -->
+<div class="input-panel">
+<div class="panel-title">📝 Your Profile</div>
+<div class="form-group">
+<label>SAT Score</label>
+<div class="hint">Enter your current or target SAT score (400–1600)</div>
+<input id="satScore" max="1600" min="400" oninput="updateSatDisplay()" placeholder="e.g. 1380" type="number"/>
+<div class="slider-wrap">
+<input id="satSlider" max="1600" min="400" oninput="syncSat(this)" step="10" type="range" value="1200"/>
+<div class="slider-labels"><span>400</span><span>1000</span><span>1300</span><span>1600</span></div>
 </div>
-
-<footer><div class="fl"><img src="assets/ednivo-logo.png" alt="Ednivo" class="brand-logo" style="height:32px;width:auto;max-width:150px;vertical-align:middle;object-fit:contain;"></div><p>© 2026 Ednivo. Data based on 2025 admissions cycles. For guidance only.</p></footer>
-
+</div>
+<div class="form-group">
+<label>GPA (Unweighted, out of 4.0)</label>
+<div class="hint">Use your cumulative unweighted GPA</div>
+<input id="gpa" max="4.0" min="2.0" placeholder="e.g. 3.75" step="0.01" type="number"/>
+<div class="slider-wrap">
+<input id="gpaSlider" max="400" min="200" oninput="syncGpa(this)" step="1" type="range" value="350"/>
+<div class="slider-labels"><span>2.0</span><span>2.5</span><span>3.0</span><span>3.5</span><span>4.0</span></div>
+</div>
+</div>
+<div class="form-group">
+<label>Course Rigor</label>
+<select id="rigor">
+<option value="3">Taking AP/IB courses (High)</option>
+<option value="2">Taking Honors courses (Medium)</option>
+<option value="1">Standard curriculum (Average)</option>
+<option value="0">Basic curriculum (Below average)</option>
+</select>
+</div>
+<div class="form-group">
+<label>Extracurricular Strength</label>
+<select id="ec">
+<option value="3">National/International awards or leadership</option>
+<option value="2">Strong school or state-level activities</option>
+<option value="1">Some activities, limited leadership</option>
+<option value="0">Minimal extracurriculars</option>
+</select>
+</div>
+<div class="form-group">
+<label>Essay Quality (Self-assessment)</label>
+<select id="essays">
+<option value="2">Strong — unique story, specific details</option>
+<option value="1">Average — decent but not memorable</option>
+<option value="0">Weak — generic or not started</option>
+</select>
+</div>
+<div class="form-group">
+<label>Additional Profile Factors</label>
+<div class="checkbox-grid">
+<label class="check-item"><input id="legacy" type="checkbox"/> Legacy admission</label>
+<label class="check-item"><input id="athlete" type="checkbox"/> Recruited athlete</label>
+<label class="check-item"><input id="research" type="checkbox"/> Published research</label>
+<label class="check-item"><input id="firstgen" type="checkbox"/> First-gen   </label>
+<label class="check-item"><input checked="" id="intl" type="checkbox"/> International student</label>
+<label class="check-item"><input id="stem" type="checkbox"/> STEM major interest</label>
+</div>
+</div>
+<div class="form-group">
+<label>Intended Major</label>
+<select id="major">
+<option value="stem">Engineering / Computer Science</option>
+<option value="premed">Pre-Med / Biology</option>
+<option value="business">Business / Economics</option>
+<option value="humanities">Humanities / Social Sciences</option>
+<option value="arts">Arts / Design</option>
+<option value="undecided">Undecided</option>
+</select>
+</div>
+<button class="calc-btn" onclick="calculate()">🎓 Calculate My Chances</button>
+<button class="reset-btn" onclick="resetCalc()">↺ Reset</button>
+</div>
+<!-- RESULTS PANEL -->
+<div class="results-panel" id="resultsPanel">
+<div class="results-placeholder" id="placeholder">
+<div class="rp-icon">🎓</div>
+<div class="rp-title">Your Results Will Appear Here</div>
+<p class="rp-sub">Fill in your profile on the left and click "Calculate My Chances" to see your admission probability at 50+ top US universities.</p>
+</div>
+<div id="resultsContent" style="display:none;">
+<div class="results-header">
+<div class="rh-left">
+<h3 id="resultSummaryTitle">Your Admission Profile</h3>
+<p id="resultSummaryText"></p>
+</div>
+<div class="profile-score-wrap">
+<div class="profile-score" id="profileScore">–</div>
+<div class="profile-score-lbl">Profile Score</div>
+<div class="profile-bar"><div class="profile-bar-fill" id="profileBarFill" style="width:0%"></div></div>
+</div>
+</div>
+<!-- REACH -->
+<div class="tier-section" id="reachSection">
+<div class="tier-label tier-reach">🔴 Reach Schools — Admission possible but requires exceptional application</div>
+<div class="uni-cards" id="reachCards"></div>
+</div>
+<!-- TARGET -->
+<div class="tier-section" id="targetSection">
+<div class="tier-label tier-target">🟠 Target Schools — You are a competitive candidate</div>
+<div class="uni-cards" id="targetCards"></div>
+</div>
+<!-- SAFETY -->
+<div class="tier-section" id="safetySection">
+<div class="tier-label tier-safety">🟢 Safety Schools — Strong likelihood of admission</div>
+<div class="uni-cards" id="safetyCards"></div>
+</div>
+<div class="calc-cta">
+<h3>Want a Personalised Admissions Plan?</h3>
+<p>Our counsellors will analyse your profile in detail and build a targeted strategy for each university on your list.</p>
+<div class="cta-row">
+<a class="cta-wa" href="https://wa.me/919424312427?text=Hi%20Ednivo!%20I%20used%20the%20College%20Calculator%20and%20want%20a%20free%20consultation." target="_blank">📲 Book Free Strategy Call</a>
+<a class="cta-diag" href="pricing.html">📊 Take SAT Diagnostic</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<footer><div class="fl"><img alt="Ednivo" class="brand-logo" src="assets/ednivo-logo.png" style="height:32px;width:auto;max-width:150px;vertical-align:middle;object-fit:contain;"/></div><p>© 2026 Ednivo. Data based on 2025 admissions cycles. For guidance only.</p></footer>
 <script>
 /* ══════════════════════════════════════════════
    UNIVERSITY DATABASE — 50 Schools
