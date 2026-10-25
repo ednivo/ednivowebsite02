@@ -1,17 +1,19 @@
 <!DOCTYPE html>
+
 <html lang="en">
-<head><script async src="https://www.googletagmanager.com/gtag/js?id=G-XVCB9W38XJ"></script>
+<head>
+<meta content="noindex,follow" name="robots"/><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-XVCB9W38XJ"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-XVCB9W38XJ');
 </script>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ednivo Admin — Booking Dashboard</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,700;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Ednivo Admin — Booking Dashboard</title><meta content="Private Ednivo admin workspace for managing student services and site operations." name="description">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,700;1,600&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{
       --ink:#0e1a2b;--ink2:#16263d;--saffron:#e8832a;--saffron2:#f5a455;
@@ -132,134 +134,122 @@
       .charts-grid{grid-template-columns:1fr;}
     }
   </style>
-  <link rel="icon" type="image/svg+xml" href="assets/ednivo-logo.png">
-  <link rel="stylesheet" href="assets/mobile.css">
-<link rel="stylesheet" href="gcc.css"><script src="site-engagement.js"></script></head>
+<link href="assets/ednivo-logo.png" rel="icon" type="image/svg+xml"/>
+<link href="assets/mobile.css" rel="stylesheet"/>
+<link href="gcc.css" rel="stylesheet"/><script defer src="site-engagement.js"></script></meta></meta></head>
 <body>
-
 <!-- AUTH SCREEN -->
 <div class="auth-screen" id="authScreen">
-  <div class="auth-box">
-    <div class="auth-logo" style="display:flex;align-items:center;gap:0.7rem;justify-content:center;"><img src="assets/ednivo-logo.png" alt="Ednivo" class="brand-logo" style="height:32px;width:auto;max-width:150px;vertical-align:middle;object-fit:contain;"></div>
-    <div class="auth-sub">Admin Dashboard</div>
-    <input class="auth-input" type="password" id="authKey" placeholder="Enter admin key" onkeydown="if(event.key==='Enter')login()"/>
-    <button class="auth-btn" onclick="login()">Access Dashboard →</button>
-    <div id="authErr" style="color:#e74c3c;font-size:0.8rem;margin-top:0.8rem;display:none;">Incorrect key. Try again.</div>
-  </div>
+<div class="auth-box">
+<div class="auth-logo" style="display:flex;align-items:center;gap:0.7rem;justify-content:center;"><img alt="Ednivo" class="brand-logo" src="assets/ednivo-logo.png" style="height:32px;width:auto;max-width:150px;vertical-align:middle;object-fit:contain;"/></div>
+<div class="auth-sub">Admin Dashboard</div>
+<input class="auth-input" id="authKey" onkeydown="if(event.key==='Enter')login()" placeholder="Enter admin key" type="password"/>
+<button class="auth-btn" onclick="login()">Access Dashboard →</button>
+<div id="authErr" style="color:#e74c3c;font-size:0.8rem;margin-top:0.8rem;display:none;">Incorrect key. Try again.</div>
 </div>
-
+</div>
 <!-- MAIN LAYOUT -->
 <div class="layout" id="appLayout" style="display:none;">
-  <div class="sidebar">
-    <div class="sidebar-logo" style="display:flex;align-items:center;gap:0.7rem;"><img src="assets/ednivo-logo.png" alt="Ednivo" class="brand-logo" style="height:32px;width:auto;max-width:150px;vertical-align:middle;object-fit:contain;"></div>
-    <nav class="sidebar-nav">
-      <div class="nav-item active" onclick="showView('bookings')">📅 Bookings</div>
-      <div class="nav-item" onclick="showView('stats')">📊 Analytics</div>
-      <div class="nav-item" onclick="showView('notifications')">🔔 Notifications</div>
-      <div class="nav-item" onclick="window.open('book.html','_blank')">🔗 Booking Page</div>
-    </nav>
-    <div class="sidebar-footer">Ednivo Admin v1.0</div>
-  </div>
-
-  <div class="main">
-    <div class="topbar">
-      <div class="topbar-title" id="topbarTitle">Bookings</div>
-      <div class="topbar-right">
-        <span class="admin-badge">ADMIN</span>
-        <button onclick="logout()" style="background:none;border:none;cursor:pointer;color:var(--muted);font-size:0.85rem;">Sign out</button>
-      </div>
-    </div>
-
-    <div class="content">
-
-      <!-- BOOKINGS VIEW -->
-      <div id="viewBookings">
-        <!-- Mini stats row -->
-        <div class="stats-grid" id="miniStats">
-          <div class="stat-card"><div class="stat-label">Total Bookings</div><div class="stat-value" id="s_total">—</div><div class="stat-sub">All time</div></div>
-          <div class="stat-card accent"><div class="stat-label">Today</div><div class="stat-value" id="s_today">—</div><div class="stat-sub">Sessions today</div></div>
-          <div class="stat-card green"><div class="stat-label">Upcoming</div><div class="stat-value" id="s_upcoming">—</div><div class="stat-sub">Confirmed ahead</div></div>
-          <div class="stat-card"><div class="stat-label">This Month</div><div class="stat-value" id="s_month">—</div><div class="stat-sub">Bookings</div></div>
-        </div>
-
-        <!-- Filters -->
-        <div class="filters">
-          <input class="filter-input" type="date" id="fFrom" placeholder="From date"/>
-          <input class="filter-input" type="date" id="fTo" placeholder="To date"/>
-          <select class="filter-select" id="fStatus">
-            <option value="">All statuses</option>
-            <option value="confirmed">Confirmed</option>
-            <option value="completed">Completed</option>
-            <option value="cancelled">Cancelled</option>
-            <option value="rescheduled">Rescheduled</option>
-            <option value="no_show">No Show</option>
-          </select>
-          <select class="filter-select" id="fSource">
-            <option value="">All sources</option>
-            <option value="instagram_ad">Instagram Ad</option>
-            <option value="google_search">Google Search</option>
-            <option value="referral">Referral</option>
-            <option value="whatsapp">WhatsApp</option>
-            <option value="landing_page">Landing Page</option>
-          </select>
-          <button class="filter-btn" onclick="loadBookings(0)">Search</button>
-          <button class="filter-btn secondary" onclick="clearFilters()">Clear</button>
-          <button class="filter-btn" onclick="exportCSV()" style="background:var(--green);margin-left:auto;">⬇ Export CSV</button>
-        </div>
-
-        <div class="table-wrap">
-          <div class="table-header">
-            <span class="table-title">All Bookings</span>
-            <span class="table-count" id="tableCount"></span>
-          </div>
-          <div id="tableBody"><div class="loading">Loading bookings...</div></div>
-          <div class="pagination" id="pagination"></div>
-        </div>
-      </div>
-
-      <!-- STATS VIEW -->
-      <div id="viewStats" style="display:none;">
-        <div class="charts-grid">
-          <div class="chart-card">
-            <div class="chart-card-title">📣 Bookings by Source</div>
-            <div id="sourceChart"></div>
-          </div>
-          <div class="chart-card">
-            <div class="chart-card-title">📚 Bookings by Exam</div>
-            <div id="examChart"></div>
-          </div>
-        </div>
-        <div class="chart-card">
-          <div class="chart-card-title">📋 Status Breakdown</div>
-          <div id="statusChart"></div>
-        </div>
-      </div>
-
-      <!-- NOTIFICATIONS VIEW -->
-      <div id="viewNotifications" style="display:none;">
-        <div class="table-wrap">
-          <div class="table-header"><span class="table-title">Notification Delivery Log</span></div>
-          <div id="notifBody"><div class="loading">Loading...</div></div>
-        </div>
-      </div>
-
-    </div>
-  </div>
+<div class="sidebar">
+<div class="sidebar-logo" style="display:flex;align-items:center;gap:0.7rem;"><img alt="Ednivo" class="brand-logo" src="assets/ednivo-logo.png" style="height:32px;width:auto;max-width:150px;vertical-align:middle;object-fit:contain;"/></div>
+<nav class="sidebar-nav">
+<div class="nav-item active" onclick="showView('bookings')">📅 Bookings</div>
+<div class="nav-item" onclick="showView('stats')">📊 Analytics</div>
+<div class="nav-item" onclick="showView('notifications')">🔔 Notifications</div>
+<div class="nav-item" onclick="window.open('book.html','_blank')">🔗 Booking Page</div>
+</nav>
+<div class="sidebar-footer">Ednivo Admin v1.0</div>
 </div>
-
+<div class="main">
+<div class="topbar">
+<div class="topbar-title" id="topbarTitle">Bookings</div>
+<div class="topbar-right">
+<span class="admin-badge">ADMIN</span>
+<button onclick="logout()" style="background:none;border:none;cursor:pointer;color:var(--muted);font-size:0.85rem;">Sign out</button>
+</div>
+</div>
+<div class="content">
+<!-- BOOKINGS VIEW -->
+<div id="viewBookings">
+<!-- Mini stats row -->
+<div class="stats-grid" id="miniStats">
+<div class="stat-card"><div class="stat-label">Total Bookings</div><div class="stat-value" id="s_total">—</div><div class="stat-sub">All time</div></div>
+<div class="stat-card accent"><div class="stat-label">Today</div><div class="stat-value" id="s_today">—</div><div class="stat-sub">Sessions today</div></div>
+<div class="stat-card green"><div class="stat-label">Upcoming</div><div class="stat-value" id="s_upcoming">—</div><div class="stat-sub">Confirmed ahead</div></div>
+<div class="stat-card"><div class="stat-label">This Month</div><div class="stat-value" id="s_month">—</div><div class="stat-sub">Bookings</div></div>
+</div>
+<!-- Filters -->
+<div class="filters">
+<input class="filter-input" id="fFrom" placeholder="From date" type="date"/>
+<input class="filter-input" id="fTo" placeholder="To date" type="date"/>
+<select class="filter-select" id="fStatus">
+<option value="">All statuses</option>
+<option value="confirmed">Confirmed</option>
+<option value="completed">Completed</option>
+<option value="cancelled">Cancelled</option>
+<option value="rescheduled">Rescheduled</option>
+<option value="no_show">No Show</option>
+</select>
+<select class="filter-select" id="fSource">
+<option value="">All sources</option>
+<option value="instagram_ad">Instagram Ad</option>
+<option value="google_search">Google Search</option>
+<option value="referral">Referral</option>
+<option value="whatsapp">WhatsApp</option>
+<option value="landing_page">Landing Page</option>
+</select>
+<button class="filter-btn" onclick="loadBookings(0)">Search</button>
+<button class="filter-btn secondary" onclick="clearFilters()">Clear</button>
+<button class="filter-btn" onclick="exportCSV()" style="background:var(--green);margin-left:auto;">⬇ Export CSV</button>
+</div>
+<div class="table-wrap">
+<div class="table-header">
+<span class="table-title">All Bookings</span>
+<span class="table-count" id="tableCount"></span>
+</div>
+<div id="tableBody"><div class="loading">Loading bookings...</div></div>
+<div class="pagination" id="pagination"></div>
+</div>
+</div>
+<!-- STATS VIEW -->
+<div id="viewStats" style="display:none;">
+<div class="charts-grid">
+<div class="chart-card">
+<div class="chart-card-title">📣 Bookings by Source</div>
+<div id="sourceChart"></div>
+</div>
+<div class="chart-card">
+<div class="chart-card-title">📚 Bookings by Exam</div>
+<div id="examChart"></div>
+</div>
+</div>
+<div class="chart-card">
+<div class="chart-card-title">📋 Status Breakdown</div>
+<div id="statusChart"></div>
+</div>
+</div>
+<!-- NOTIFICATIONS VIEW -->
+<div id="viewNotifications" style="display:none;">
+<div class="table-wrap">
+<div class="table-header"><span class="table-title">Notification Delivery Log</span></div>
+<div id="notifBody"><div class="loading">Loading...</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
 <!-- BOOKING DETAIL MODAL -->
 <div class="modal-overlay" id="detailModal">
-  <div class="modal">
-    <div class="modal-title">📅 Booking Details</div>
-    <div id="modalContent"></div>
-    <div class="modal-actions">
-      <button class="modal-btn primary" id="modalMeetBtn" onclick="" style="display:none;">🎥 Join Meet</button>
-      <button class="modal-btn danger" id="modalCancelBtn" onclick="">Cancel Booking</button>
-      <button class="modal-btn close" onclick="closeModal()">Close</button>
-    </div>
-  </div>
+<div class="modal">
+<div class="modal-title">📅 Booking Details</div>
+<div id="modalContent"></div>
+<div class="modal-actions">
+<button class="modal-btn primary" id="modalMeetBtn" onclick="" style="display:none;">🎥 Join Meet</button>
+<button class="modal-btn danger" id="modalCancelBtn" onclick="">Cancel Booking</button>
+<button class="modal-btn close" onclick="closeModal()">Close</button>
 </div>
-
+</div>
+</div>
 <script>
 const API_BASE = 'https://your-backend.railway.app/api'; // ← UPDATE THIS
 let ADMIN_KEY = '';

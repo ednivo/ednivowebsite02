@@ -5,3 +5,6 @@
 @media(max-width:560px){.wrap{width:calc(100% - 28px)}h1{font-size:45px;letter-spacing:-2.7px}.pagehero h1{font-size:44px}.steps,.countries,.dashgrid{grid-template-columns:1fr}.scorecards{grid-template-columns:1fr}.ctabox{padding:40px 22px}.footerin{flex-direction:column}.micro{display:grid;gap:6px}}
 .student-login-link{font-weight:800;color:var(--ink)}
 .student-login-link:hover{color:var(--orange)!important}
+
+/* Semantic heading level adjustments for SEO/accessibility */
+.plan-heading{font-size:1.17em;line-height:1.3;font-weight:700;margin-block:1em;}

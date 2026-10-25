@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ednivo.in/sitemap.xml
