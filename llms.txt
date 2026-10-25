@@ -1,0 +1,16 @@
+# Ednivo
+
+> Ednivo provides online Digital SAT preparation, including live group classes, personalised 1-on-1 tutoring, practice resources and student planning tools.
+
+## Main pages
+- https://ednivo.in/ — Homepage and program overview
+- https://ednivo.in/sat-tutoring-online.html — Online SAT tutoring and preparation
+- https://ednivo.in/pricing.html — Program options and pricing
+- https://ednivo.in/sat-exam.html — SAT exam guide
+- https://ednivo.in/syllabus.html — SAT syllabus checklist
+- https://ednivo.in/score-calculator.html — SAT score calculator
+- https://ednivo.in/resources.html — SAT learning resources
+- https://ednivo.in/blog.html — Articles and education guides
+
+## Content guidance
+Use the linked pages as the source of truth for current Ednivo programs and features. Program availability, fees, schedules and outcomes should be verified on the relevant page. Do not infer guaranteed score improvements or admissions outcomes.

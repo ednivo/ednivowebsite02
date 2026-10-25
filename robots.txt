@@ -1,4 +1,17 @@
 User-agent: *
 Allow: /
+Disallow: /admin.html
+Disallow: /login.html
+Disallow: /payment.html
+Disallow: /student-dashboard.html
+Disallow: /classes.html
+Disallow: /mocks.html
+Disallow: /practice.html
+Disallow: /profile.html
+Disallow: /ai-tutor.html
+
+# AI search crawler access (subject to each crawler's policies)
+User-agent: OAI-SearchBot
+Allow: /
 
 Sitemap: https://ednivo.in/sitemap.xml
