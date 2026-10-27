@@ -144,6 +144,9 @@ footer p{font-size:0.82rem;}
 <button class="filter-tab" onclick="filterPosts('profile',this)">🏆 Profile Building</button>
 <button class="filter-tab" onclick="filterPosts('credits',this)">📚 College Credits</button>
 <button class="filter-tab" onclick="filterPosts('loans',this)">💱 Loans &amp; Forex</button>
+<div style="margin-left:auto;display:flex;align-items:center;">
+<input type="text" id="blogSearch" placeholder="🔍 Search articles..." oninput="searchBlogPosts(this.value)" style="padding:0.45rem 1.1rem;border-radius:100px;border:1.5px solid rgba(14,26,43,0.18);font-size:0.82rem;outline:none;background:#fff;width:240px;font-family:inherit;box-shadow:0 1px 3px rgba(0,0,0,0.05);"/>
+</div>
 </div>
 <!-- FEATURED -->
 <div class="featured-section">
@@ -287,6 +290,16 @@ footer p{font-size:0.82rem;}
 <p>© 2026 Ednivo. All rights reserved.</p>
 <a href="sat-faqs.html">Digital SAT FAQs</a></footer>
 <script>
+function searchBlogPosts(query) {
+  query = (query || '').toLowerCase().trim();
+  document.querySelectorAll('.filter-tab').forEach(function(t){ t.classList.remove('active'); });
+  var allBtn = document.querySelector('.filter-tab');
+  if (allBtn) allBtn.classList.add('active');
+  document.querySelectorAll('.blog-card').forEach(function(card){
+    var text = (card.textContent || '').toLowerCase();
+    card.style.display = (!query || text.includes(query)) ? 'flex' : 'none';
+  });
+}
 function filterPosts(cat, btn) {
   document.querySelectorAll('.filter-tab').forEach(function(t){ t.classList.remove('active'); });
   btn.classList.add('active');
