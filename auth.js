@@ -156,7 +156,8 @@ function getSafeRedirect() {
 /* ── GET CURRENT USER ───────────────────────── */
 function getCurrentUser() {
   try {
-    return JSON.parse(localStorage.getItem('pw_user') || '{}');
+    var raw = localStorage.getItem('ednivo_user') || localStorage.getItem('pw_user') || '{}';
+    return JSON.parse(raw);
   } catch(e) {
     return {};
   }
@@ -165,12 +166,13 @@ function getCurrentUser() {
 /* ── IS LOGGED IN ───────────────────────────── */
 function isLoggedIn() {
   var u = getCurrentUser();
-  return u && u.loggedIn === true;
+  return u && (u.loggedIn === true || u.isLoggedIn === true);
 }
 
 /* ── LOGOUT ─────────────────────────────────── */
 function logout() {
   localStorage.removeItem('pw_user');
+  localStorage.removeItem('ednivo_user');
   try{sessionStorage.removeItem('ednivo_otp_verified_email');}catch(e){}
   window.location.href = 'login.html';
 }
@@ -212,7 +214,9 @@ document.addEventListener('DOMContentLoaded', function() {
 async function ednivoSignUp(credentials, profile){
   if(!window.EDNIVO_DB || !window.EDNIVO_DB.configured) {
     saveUserDirectoryEntry({...profile,email:credentials.email});
-    localStorage.setItem('pw_user', JSON.stringify({...profile,email:credentials.email,loggedIn:true}));
+    var uStr = JSON.stringify({...profile,email:credentials.email,loggedIn:true});
+    localStorage.setItem('pw_user', uStr);
+    localStorage.setItem('ednivo_user', uStr);
     return {local:true};
   }
   await window.EDNIVO_DB.ready;
@@ -220,7 +224,9 @@ async function ednivoSignUp(credentials, profile){
   if(error) throw error;
   if(data.user){
     await window.EDNIVO_DB.saveProfile({id:data.user.id,role:profile.role||'student',name:profile.name,email:credentials.email,phone:profile.phone||'',country:profile.country||'',curriculum:profile.curriculum||'',grade:profile.grade||'',target_score:profile.target_score||null});
-    localStorage.setItem('pw_user',JSON.stringify({id:data.user.id,name:profile.name,email:credentials.email,role:profile.role||'student',loggedIn:!!data.session}));
+    var uObj = {id:data.user.id,name:profile.name,email:credentials.email,role:profile.role||'student',loggedIn:!!data.session};
+    localStorage.setItem('pw_user',JSON.stringify(uObj));
+    localStorage.setItem('ednivo_user',JSON.stringify(uObj));
   }
   return data;
 }
@@ -232,6 +238,7 @@ async function ednivoSignIn(email,password){
   var p=await window.EDNIVO_DB.getProfile(data.user.id);
   var user={id:data.user.id,name:p?.name||data.user.user_metadata?.name||'',email:data.user.email,role:p?.role||'student',loggedIn:true};
   localStorage.setItem('pw_user',JSON.stringify(user));
+  localStorage.setItem('ednivo_user',JSON.stringify(user));
   return user;
 }
 async function ednivoSignOut(){

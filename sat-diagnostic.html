@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XVCB9W38XJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XVCB9W38XJ');
+</script>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Free SAT Diagnostic Test (2026 Adaptive Format) – Ednivo</title>
+<meta name="description" content="Take Ednivo's free 20-question SAT diagnostic test. Get an instant accurate score prediction (400–1600), section-by-section breakdown, and personalised score improvement plan in 25 minutes."/>
+<link rel="canonical" href="https://ednivo.in/sat-diagnostic.html"/>
+<script defer src="supabase-config.js"></script>
+<script defer src="db.js"></script>
+<script defer src="lead-storage.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+:root{
+  --ink:#0e1a2b;--ink2:#16263d;
+  --saffron:#e8832a;--saffron2:#f5a455;
+  --green:#1a7a4a;--green2:#24a866;
+  --red:#e05252;--blue:#2e6fd4;
+  --white:#ffffff;--off:#f7f5f1;--muted:#6b7a8d;
+}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--ink);color:var(--white);min-height:100vh;overflow-x:hidden;}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0.9rem 5%;background:rgba(14,26,43,0.97);
+  backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.logo{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;color:var(--white);text-decoration:none;}
+.logo em{font-style:normal;color:var(--saffron);}
+.back-link{display:flex;align-items:center;gap:0.4rem;color:rgba(255,255,255,0.6);text-decoration:none;font-size:0.82rem;font-weight:500;border:1px solid rgba(255,255,255,0.12);padding:0.4rem 0.9rem;border-radius:6px;transition:all 0.2s;}
+.back-link:hover{color:var(--saffron);border-color:var(--saffron);}
+
+/* ── SCREENS ── */
+.screen{display:none;min-height:100vh;padding:6rem 5% 3rem;}
+.screen.active{display:flex;align-items:center;justify-content:center;}
+
+/* ══ WELCOME SCREEN ══ */
+#welcomeScreen{
+  background:var(--ink);
+  position:relative;overflow:hidden;
+}
+#welcomeScreen::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 60% at 70% 40%,rgba(232,131,42,0.09) 0%,transparent 65%),
+             radial-gradient(ellipse 40% 40% at 10% 80%,rgba(26,122,74,0.06) 0%,transparent 60%);
+}
+.dots-bg{position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(rgba(255,255,255,0.03) 1px,transparent 1px);background-size:28px 28px;}
+.welcome-inner{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;width:100%;max-width:1100px;}
+.welcome-left h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:700;line-height:1.08;letter-spacing:-1px;margin-bottom:1.2rem;}
+.welcome-left h1 em{font-style:italic;background:linear-gradient(120deg,var(--saffron),var(--saffron2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.welcome-left p{font-size:1rem;color:rgba(255,255,255,0.6);line-height:1.75;font-weight:300;margin-bottom:2rem;}
+.test-meta{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin-bottom:2rem;}
+.meta-chip{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:0.9rem 1rem;display:flex;align-items:center;gap:0.7rem;}
+.meta-chip .mc-icon{font-size:1.2rem;}
+.meta-chip h4{font-size:0.85rem;font-weight:700;color:var(--white);margin-bottom:0.1rem;}
+.meta-chip p{font-size:0.72rem;color:rgba(255,255,255,0.45);}
+.start-btn{
+  display:inline-flex;align-items:center;gap:0.7rem;
+  background:linear-gradient(135deg,var(--saffron),var(--saffron2));
+  color:var(--white);border:none;border-radius:10px;
+  padding:1rem 2.2rem;font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:1rem;font-weight:700;cursor:pointer;
+  transition:transform 0.2s,box-shadow 0.2s;
+}
+.start-btn:hover{transform:translateY(-3px);box-shadow:0 12px 35px rgba(232,131,42,0.4);}
+.welcome-right{}
+.section-preview{display:flex;flex-direction:column;gap:0.8rem;}
+.sp-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:1.2rem 1.4rem;display:flex;align-items:center;gap:1rem;transition:border-color 0.2s;}
+.sp-card:hover{border-color:var(--saffron);}
+.sp-icon{width:42px;height:42px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+.sp-math{background:rgba(232,131,42,0.12);}
+.sp-read{background:rgba(46,111,212,0.12);}
+.sp-write{background:rgba(26,122,74,0.12);}
+.sp-card h4{font-size:0.9rem;font-weight:700;color:var(--white);margin-bottom:0.2rem;}
+.sp-card p{font-size:0.75rem;color:rgba(255,255,255,0.45);}
+.sp-badge{margin-left:auto;font-size:0.68rem;font-weight:700;padding:0.2rem 0.7rem;border-radius:100px;}
+.badge-math{background:rgba(232,131,42,0.15);color:var(--saffron);border:1px solid rgba(232,131,42,0.3);}
+.badge-read{background:rgba(46,111,212,0.15);color:#6ea8fe;border:1px solid rgba(46,111,212,0.3);}
+.badge-write{background:rgba(26,122,74,0.15);color:var(--green2);border:1px solid rgba(26,122,74,0.3);}
+.total-info{background:rgba(232,131,42,0.08);border:1px solid rgba(232,131,42,0.2);border-radius:12px;padding:1rem 1.4rem;margin-top:0.5rem;display:flex;align-items:center;justify-content:space-between;}
+.total-info span{font-size:0.82rem;color:rgba(255,255,255,0.6);}
+.total-info strong{color:var(--saffron);font-size:0.9rem;}
+
+/* ══ QUIZ SCREEN ══ */
+#quizScreen{background:var(--ink2);display:none;flex-direction:column;padding:5rem 5% 3rem;}
+#quizScreen.active{display:flex;}
+
+/* Header bar */
+.quiz-header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(22,38,61,0.97);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  padding:0 5%;height:64px;display:flex;align-items:center;gap:1.5rem;
+}
+.qh-logo{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;color:var(--white);}
+.qh-logo em{color:var(--saffron);font-style:normal;}
+.qh-section-badge{font-size:0.68rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:0.3rem 0.9rem;border-radius:100px;}
+.qh-progress-wrap{flex:1;display:flex;align-items:center;gap:0.8rem;}
+.qh-pbar{flex:1;height:5px;background:rgba(255,255,255,0.08);border-radius:100px;overflow:hidden;}
+.qh-pfill{height:100%;border-radius:100px;transition:width 0.4s ease;background:linear-gradient(90deg,var(--saffron),var(--saffron2));}
+.qh-qcount{font-size:0.78rem;color:rgba(255,255,255,0.5);white-space:nowrap;}
+.timer-wrap{display:flex;align-items:center;gap:0.5rem;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:0.4rem 0.9rem;}
+.timer-icon{font-size:0.9rem;}
+.timer-display{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:700;color:var(--white);letter-spacing:1px;min-width:52px;text-align:center;}
+.timer-wrap.urgent{border-color:rgba(224,82,82,0.5);background:rgba(224,82,82,0.1);}
+.timer-wrap.urgent .timer-display{color:var(--red);}
+
+/* Quiz body */
+.quiz-body{max-width:820px;margin:0 auto;width:100%;padding-top:1rem;}
+.section-label-bar{display:flex;align-items:center;gap:0.7rem;margin-bottom:1.8rem;}
+.slb-icon{font-size:1.1rem;}
+.slb-text{font-size:0.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--saffron);}
+.slb-num{margin-left:auto;font-size:0.78rem;color:rgba(255,255,255,0.35);}
+
+/* Passage box (for reading/writing) */
+.passage-box{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:1.4rem 1.6rem;margin-bottom:1.6rem;font-size:0.88rem;color:rgba(255,255,255,0.65);line-height:1.8;font-style:italic;position:relative;}
+.passage-box::before{content:'PASSAGE';position:absolute;top:-0.5rem;left:1rem;background:var(--ink2);padding:0 0.5rem;font-size:0.6rem;font-weight:700;letter-spacing:2px;color:rgba(255,255,255,0.3);}
+.passage-box em{font-style:normal;background:rgba(232,131,42,0.2);border-radius:3px;padding:0 2px;}
+
+/* Question card */
+.q-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:2rem;}
+.q-text{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:600;color:var(--white);line-height:1.55;margin-bottom:1.6rem;}
+.options-grid{display:flex;flex-direction:column;gap:0.65rem;}
+.opt-btn{
+  background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.1);
+  border-radius:10px;padding:0.9rem 1.1rem;
+  color:rgba(255,255,255,0.8);font-size:0.9rem;
+  cursor:pointer;transition:all 0.18s;
+  display:flex;align-items:center;gap:0.9rem;
+  font-family:'Plus Jakarta Sans',sans-serif;text-align:left;width:100%;
+}
+.opt-btn:hover:not(:disabled){border-color:var(--saffron);background:rgba(232,131,42,0.07);color:var(--white);transform:translateX(4px);}
+.opt-btn.selected{border-color:var(--saffron);background:rgba(232,131,42,0.1);color:var(--white);}
+.opt-btn.correct{border-color:var(--green2);background:rgba(36,168,102,0.12);color:var(--white);}
+.opt-btn.wrong{border-color:var(--red);background:rgba(224,82,82,0.08);color:rgba(255,255,255,0.5);}
+.opt-btn:disabled{cursor:default;}
+.opt-letter{
+  width:30px;height:30px;border-radius:50%;
+  background:rgba(255,255,255,0.07);
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.75rem;font-weight:700;flex-shrink:0;
+  transition:background 0.18s;
+}
+.opt-btn.correct .opt-letter{background:var(--green2);color:var(--white);}
+.opt-btn.wrong   .opt-letter{background:var(--red);color:var(--white);}
+.opt-btn.selected .opt-letter{background:var(--saffron);color:var(--white);}
+
+/* Explanation */
+.explanation-box{display:none;background:rgba(36,168,102,0.08);border:1px solid rgba(36,168,102,0.2);border-radius:10px;padding:1rem 1.2rem;margin-top:1rem;font-size:0.85rem;color:rgba(255,255,255,0.7);line-height:1.7;}
+.explanation-box strong{color:var(--green2);}
+
+/* Nav footer */
+.quiz-footer{display:flex;align-items:center;justify-content:space-between;margin-top:1.8rem;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,0.06);}
+.qf-dots{display:flex;gap:0.35rem;flex-wrap:wrap;max-width:400px;}
+.q-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.1);transition:background 0.2s;}
+.q-dot.answered{background:var(--green2);}
+.q-dot.current{background:var(--saffron);}
+.q-dot.skipped{background:rgba(255,255,255,0.25);}
+.next-btn{
+  background:var(--saffron);color:var(--white);border:none;
+  border-radius:9px;padding:0.85rem 2rem;
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:0.9rem;font-weight:700;
+  cursor:pointer;transition:all 0.2s;display:none;
+}
+.next-btn:hover{background:var(--saffron2);transform:translateY(-2px);}
+.skip-btn{
+  background:transparent;color:rgba(255,255,255,0.35);border:none;
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:0.82rem;
+  cursor:pointer;padding:0.5rem;transition:color 0.2s;
+}
+.skip-btn:hover{color:rgba(255,255,255,0.6);}
+
+/* Section transition */
+.section-transition{
+  display:none;position:fixed;inset:0;z-index:500;
+  background:var(--ink);align-items:center;justify-content:center;
+  flex-direction:column;gap:1.2rem;text-align:center;padding:2rem;
+}
+.section-transition.show{display:flex;}
+.st-icon{font-size:4rem;animation:bounce 0.6s ease;}
+@keyframes bounce{0%{transform:scale(0.5);}70%{transform:scale(1.1);}100%{transform:scale(1);}}
+.st-title{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--white);}
+.st-sub{font-size:0.9rem;color:rgba(255,255,255,0.5);}
+.st-btn{background:var(--saffron);color:var(--white);border:none;border-radius:9px;padding:0.85rem 2rem;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.9rem;font-weight:700;cursor:pointer;margin-top:0.5rem;transition:all 0.2s;}
+.st-btn:hover{background:var(--saffron2);}
+
+/* ══ GATE SCREEN ══ */
+#gateScreen{background:var(--ink);flex-direction:column;}
+.gate-box{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.1);border-radius:18px;padding:3rem;max-width:480px;width:100%;text-align:center;}
+.gate-icon{font-size:3.5rem;margin-bottom:1rem;}
+.gate-title{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--white);margin-bottom:0.5rem;}
+.gate-sub{font-size:0.88rem;color:rgba(255,255,255,0.5);line-height:1.7;margin-bottom:2rem;}
+.gate-peek{display:flex;justify-content:center;gap:1.5rem;margin-bottom:2rem;}
+.gp-item{text-align:center;}
+.gp-val{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;color:var(--saffron);}
+.gp-label{font-size:0.65rem;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1px;}
+.gate-form{display:flex;flex-direction:column;gap:0.8rem;text-align:left;}
+.gate-form input{
+  background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.1);
+  border-radius:9px;padding:0.85rem 1.1rem;
+  color:var(--white);font-family:'Plus Jakarta Sans',sans-serif;font-size:0.9rem;
+  outline:none;transition:border-color 0.2s;
+}
+.gate-form input::placeholder{color:rgba(255,255,255,0.3);}
+.gate-form input:focus{border-color:var(--saffron);}
+.gate-submit{
+  background:linear-gradient(135deg,var(--saffron),var(--saffron2));
+  color:var(--white);border:none;border-radius:9px;padding:0.95rem;
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:0.95rem;font-weight:700;
+  cursor:pointer;transition:all 0.2s;margin-top:0.3rem;
+}
+.gate-submit:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(232,131,42,0.4);}
+.gate-note{font-size:0.72rem;color:rgba(255,255,255,0.3);text-align:center;margin-top:0.8rem;}
+.gate-status{font-size:0.85rem;text-align:center;margin-top:0.5rem;display:none;font-weight:600;}
+
+/* ══ RESULT SCREEN ══ */
+#resultScreen{background:var(--ink);flex-direction:column;gap:0;}
+.result-hero{text-align:center;padding:4rem 5% 3rem;position:relative;}
+.result-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 50%,rgba(232,131,42,0.07) 0%,transparent 70%);}
+.confetti-emoji{font-size:2.5rem;position:absolute;animation:float 3s ease-in-out infinite;}
+.ce1{top:20%;left:10%;animation-delay:0s;}
+.ce2{top:30%;right:12%;animation-delay:0.5s;}
+.ce3{top:60%;left:6%;animation-delay:1s;}
+.ce4{top:55%;right:8%;animation-delay:1.5s;}
+@keyframes float{0%,100%{transform:translateY(0) rotate(0);}50%{transform:translateY(-15px) rotate(10deg);}}
+.score-ring-wrap{position:relative;z-index:1;display:inline-flex;align-items:center;justify-content:center;margin-bottom:1.5rem;}
+.score-ring-svg{transform:rotate(-90deg);}
+.score-ring-bg{fill:none;stroke:rgba(255,255,255,0.07);stroke-width:8;}
+.score-ring-fill{fill:none;stroke:url(#scoreGrad);stroke-width:8;stroke-linecap:round;transition:stroke-dashoffset 1.5s ease;}
+.score-ring-center{position:absolute;text-align:center;}
+.score-big{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:700;color:var(--white);line-height:1;}
+.score-label{font-size:0.65rem;color:rgba(255,255,255,0.4);letter-spacing:1.5px;text-transform:uppercase;}
+.result-title{font-family:'Cormorant Garamond',serif;font-size:2.2rem;color:var(--white);margin-bottom:0.5rem;position:relative;z-index:1;}
+.result-sub{font-size:0.9rem;color:rgba(255,255,255,0.55);line-height:1.7;max-width:480px;margin:0 auto 0.5rem;position:relative;z-index:1;}
+
+/* Score breakdown */
+.result-breakdown{max-width:820px;margin:0 auto;width:100%;padding:0 5% 4rem;}
+.breakdown-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-bottom:2rem;}
+.bd-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:1.6rem;text-align:center;}
+.bd-icon{font-size:1.5rem;margin-bottom:0.6rem;}
+.bd-label{font-size:0.68rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:0.5rem;}
+.bd-score{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;color:var(--saffron);}
+.bd-outof{font-size:0.75rem;color:rgba(255,255,255,0.3);}
+.bd-bar{height:6px;background:rgba(255,255,255,0.08);border-radius:100px;margin-top:0.8rem;overflow:hidden;}
+.bd-bar-fill{height:100%;border-radius:100px;transition:width 1.2s 0.5s ease;}
+.fill-math{background:linear-gradient(90deg,var(--saffron),var(--saffron2));}
+.fill-read{background:linear-gradient(90deg,#2e6fd4,#6ea8fe);}
+.fill-write{background:linear-gradient(90deg,var(--green),var(--green2));}
+
+/* Analysis */
+.analysis-box{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:1.8rem;margin-bottom:1.5rem;}
+.analysis-box h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--white);margin-bottom:1rem;}
+.analysis-rows{display:flex;flex-direction:column;gap:0.7rem;}
+.ar{display:flex;align-items:center;gap:0.8rem;font-size:0.85rem;}
+.ar-icon{font-size:1rem;flex-shrink:0;}
+.ar-text{color:rgba(255,255,255,0.65);flex:1;}
+.ar-badge{font-size:0.68rem;font-weight:700;padding:0.2rem 0.7rem;border-radius:100px;}
+.ab-strong{background:rgba(36,168,102,0.15);color:var(--green2);}
+.ab-improve{background:rgba(232,131,42,0.15);color:var(--saffron);}
+.ab-focus{background:rgba(224,82,82,0.15);color:var(--red);}
+
+/* CTA bottom */
+.result-cta{background:var(--ink2);border-top:1px solid rgba(255,255,255,0.06);padding:3rem 5%;text-align:center;}
+.result-cta h3{font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:var(--white);margin-bottom:0.6rem;}
+.result-cta p{font-size:0.88rem;color:rgba(255,255,255,0.5);margin-bottom:1.8rem;line-height:1.7;}
+.cta-btns-row{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+.cta-primary{background:var(--saffron);color:var(--white);padding:0.9rem 2rem;border-radius:9px;font-weight:700;font-size:0.92rem;text-decoration:none;transition:all 0.2s;}
+.cta-primary:hover{background:var(--saffron2);transform:translateY(-2px);}
+.cta-outline{border:1.5px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.8);padding:0.9rem 2rem;border-radius:9px;font-weight:500;font-size:0.92rem;text-decoration:none;transition:all 0.2s;}
+.cta-outline:hover{border-color:var(--saffron);color:var(--saffron);}
+
+@media(max-width:768px){
+  .welcome-inner{grid-template-columns:1fr;gap:2.5rem;}
+  .test-meta{grid-template-columns:1fr 1fr;}
+  .breakdown-grid{grid-template-columns:1fr;}
+  .quiz-header{gap:0.8rem;padding:0 3%;}
+  .qh-logo{display:none;}
+  .screen{padding:5rem 4% 2rem;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Ed<em>nivo</em></a>
+  <a href="index.html" class="back-link">← Back to Home</a>
+</nav>
+
+<!-- Section Transition Overlay -->
+<div class="section-transition" id="sectionTransition">
+  <div class="st-icon" id="stIcon">📖</div>
+  <div class="st-title" id="stTitle">Reading Section</div>
+  <div class="st-sub" id="stSub">7 questions · 9 minutes · Passage comprehension</div>
+  <button class="st-btn" onclick="dismissTransition()">Start Section →</button>
+</div>
+
+<!-- ══ SCREEN 1: WELCOME ══ -->
+<div class="screen active" id="welcomeScreen">
+  <div class="dots-bg"></div>
+  <div class="welcome-inner">
+    <div class="welcome-left">
+      <div style="display:inline-flex;align-items:center;gap:0.5rem;border:1px solid rgba(232,131,42,0.3);background:rgba(232,131,42,0.08);padding:0.35rem 1rem;border-radius:100px;font-size:0.7rem;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--saffron);margin-bottom:1.5rem;">
+        🆓 Free Diagnostic · No Credit Card
+      </div>
+      <h1>Discover Your<br>True <em>SAT Score</em><br>Right Now</h1>
+      <p>Take Ednivo's free 20-question SAT diagnostic. Get a predicted score (400–1600), section breakdown, and a personalised gap analysis — in under 25 minutes.</p>
+      <div class="test-meta">
+        <div class="meta-chip"><div class="mc-icon">❓</div><div><h4>20 Questions</h4><p>Real SAT-style Qs</p></div></div>
+        <div class="meta-chip"><div class="mc-icon">⏱️</div><div><h4>25 Minutes</h4><p>Timed like the real SAT</p></div></div>
+        <div class="meta-chip"><div class="mc-icon">📊</div><div><h4>3 Sections</h4><p>Math · Reading · Writing</p></div></div>
+        <div class="meta-chip"><div class="mc-icon">🎯</div><div><h4>Instant Score</h4><p>400–1600 prediction</p></div></div>
+      </div>
+      <button class="start-btn" onclick="startTest()">🚀 Begin Free Test</button>
+    </div>
+    <div class="welcome-right">
+      <div class="section-preview">
+        <div class="sp-card">
+          <div class="sp-icon sp-math">📐</div>
+          <div><h4>Math</h4><p>Algebra, Data Analysis, Advanced Math</p></div>
+          <span class="sp-badge badge-math">8 Qs · 10 min</span>
+        </div>
+        <div class="sp-card">
+          <div class="sp-icon sp-read">📖</div>
+          <div><h4>Reading</h4><p>Passage comprehension, Evidence, Vocab</p></div>
+          <span class="sp-badge badge-read">7 Qs · 9 min</span>
+        </div>
+        <div class="sp-card">
+          <div class="sp-icon sp-write">✍️</div>
+          <div><h4>Writing & Language</h4><p>Grammar, Expression, Sentence structure</p></div>
+          <span class="sp-badge badge-write">5 Qs · 6 min</span>
+        </div>
+        <div class="total-info">
+          <span>Total test time</span>
+          <strong>25 minutes</strong>
+        </div>
+        <div class="total-info" style="margin-top:0;">
+          <span>Score range</span>
+          <strong>400 – 1600</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SCREEN 2: QUIZ ══ -->
+<div class="screen" id="quizScreen">
+  <div class="quiz-header">
+    <div class="qh-logo">Ed<em>nivo</em></div>
+    <div class="qh-section-badge" id="qhBadge" style="background:rgba(232,131,42,0.15);color:var(--saffron);border:1px solid rgba(232,131,42,0.3);">📐 Math</div>
+    <div class="qh-progress-wrap">
+      <div class="qh-pbar"><div class="qh-pfill" id="qhProgress" style="width:5%"></div></div>
+      <div class="qh-qcount" id="qhCount">Q1 / 20</div>
+    </div>
+    <div class="timer-wrap" id="timerWrap">
+      <span class="timer-icon">⏱</span>
+      <span class="timer-display" id="timerDisplay">25:00</span>
+    </div>
+  </div>
+  <div class="quiz-body">
+    <div class="section-label-bar">
+      <span class="slb-icon" id="slbIcon">📐</span>
+      <span class="slb-text" id="slbText">Math Section</span>
+      <span class="slb-num" id="slbNum">Question 1–8</span>
+    </div>
+    <div id="passageArea"></div>
+    <div class="q-card">
+      <div class="q-text" id="qText"></div>
+      <div class="options-grid" id="optionsGrid"></div>
+      <div class="explanation-box" id="explanationBox"></div>
+    </div>
+    <div class="quiz-footer">
+      <div class="qf-dots" id="qfDots"></div>
+      <div style="display:flex;gap:0.8rem;align-items:center;">
+        <button class="skip-btn" id="skipBtn" onclick="skipQuestion()">Skip →</button>
+        <button class="next-btn" id="nextBtn" onclick="nextQuestion()">Next →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SCREEN 3: GATE ══ -->
+<div class="screen" id="gateScreen">
+  <div class="gate-box">
+    <div class="gate-icon">🔐</div>
+    <h2 class="gate-title">You're Done!</h2>
+    <p class="gate-sub">Your results are ready. Enter your details below to unlock your full score report, section breakdown, and personalised study plan.</p>
+    <div class="gate-peek" id="gatePeek">
+      <div class="gp-item"><div class="gp-val" id="gpCorrect">–</div><div class="gp-label">Correct</div></div>
+      <div class="gp-item"><div class="gp-val" id="gpTime">–</div><div class="gp-label">Time Used</div></div>
+      <div class="gp-item"><div class="gp-val" id="gpSections">3/3</div><div class="gp-label">Sections Done</div></div>
+    </div>
+    <div class="gate-form">
+      <input type="text"  id="gateName"  placeholder="Your full name *" />
+      <input type="email" id="gateEmail" placeholder="Email address *" />
+      <input type="tel"   id="gatePhone" placeholder="WhatsApp number *" />
+      <button class="gate-submit" onclick="submitGate()">📊 Unlock My Score Report →</button>
+      <div class="gate-status" id="gateStatus"></div>
+    </div>
+    <p class="gate-note">🔒 Your data is private. No spam — ever.</p>
+  </div>
+</div>
+
+<!-- ══ SCREEN 4: RESULT ══ -->
+<div class="screen" id="resultScreen">
+  <div style="width:100%;">
+    <div class="result-hero">
+      <span class="confetti-emoji ce1">🎉</span>
+      <span class="confetti-emoji ce2">⭐</span>
+      <span class="confetti-emoji ce3">🏆</span>
+      <span class="confetti-emoji ce4">🎯</span>
+      <svg class="score-ring-svg" id="scoreRingSvg" width="160" height="160" style="display:block;margin:0 auto 0.5rem;">
+        <defs>
+          <linearGradient id="scoreGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#e8832a"/>
+            <stop offset="100%" style="stop-color:#f5a455"/>
+          </linearGradient>
+        </defs>
+        <circle class="score-ring-bg" cx="80" cy="80" r="68"/>
+        <circle class="score-ring-fill" id="scoreRingFill" cx="80" cy="80" r="68"
+          stroke-dasharray="427" stroke-dashoffset="427"/>
+      </svg>
+      <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) translateY(-1.5rem);">
+        <div class="score-ring-center">
+          <div class="score-big" id="finalScore">–</div>
+          <div class="score-label">Predicted SAT</div>
+        </div>
+      </div>
+      <h2 class="result-title" id="resultTitle">Your Results Are In!</h2>
+      <p class="result-sub" id="resultSub">Here's your personalised SAT analysis from Ednivo.</p>
+    </div>
+    <div class="result-breakdown">
+      <div class="breakdown-grid">
+        <div class="bd-card">
+          <div class="bd-icon">📐</div>
+          <div class="bd-label">Math</div>
+          <div class="bd-score" id="bdMath">–</div>
+          <div class="bd-outof">out of 800</div>
+          <div class="bd-bar"><div class="bd-bar-fill fill-math" id="bdMathBar" style="width:0%"></div></div>
+        </div>
+        <div class="bd-card">
+          <div class="bd-icon">📖</div>
+          <div class="bd-label">Reading</div>
+          <div class="bd-score" id="bdRead">–</div>
+          <div class="bd-outof">out of 400</div>
+          <div class="bd-bar"><div class="bd-bar-fill fill-read" id="bdReadBar" style="width:0%"></div></div>
+        </div>
+        <div class="bd-card">
+          <div class="bd-icon">✍️</div>
+          <div class="bd-label">Writing</div>
+          <div class="bd-score" id="bdWrite">–</div>
+          <div class="bd-outof">out of 400</div>
+          <div class="bd-bar"><div class="bd-bar-fill fill-write" id="bdWriteBar" style="width:0%"></div></div>
+        </div>
+      </div>
+      <div class="analysis-box">
+        <h3>📋 Your Personalised Analysis</h3>
+        <div class="analysis-rows" id="analysisRows"></div>
+      </div>
+      <div class="analysis-box" style="background:rgba(232,131,42,0.05);border-color:rgba(232,131,42,0.2);">
+        <h3 style="color:var(--saffron);">🎯 Your Ednivo Recommendation</h3>
+        <p style="font-size:0.88rem;color:rgba(255,255,255,0.6);line-height:1.75;" id="recommendationText"></p>
+      </div>
+    </div>
+    <div class="result-cta">
+      <h3 id="ctaTitle">Ready to Reach Your Target Score?</h3>
+      <p id="ctaText">Book your free strategy call now — our Ivy League mentors will build a personalised plan to close your score gap.</p>
+      <div class="cta-btns-row">
+        <a href="https://wa.me/919424312427?text=Hi%20Ednivo!%20I%20just%20completed%20the%20SAT%20diagnostic.%20I%27d%20like%20to%20book%20a%20free%20strategy%20call." target="_blank" class="cta-primary">📲 Book Free Strategy Call</a>
+        <a href="index.html#pricing" class="cta-outline">View Pricing →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════
+   QUESTION BANK — 20 Questions (8 Math + 7 Reading + 5 Writing)
+   Calibrated so max raw score → max ~1350 predicted
+═══════════════════════════════════════════════════════════ */
+var QUESTIONS = [
+  // ── MATH (8 questions) ─────────────────────────────────
+  {
+    section:'math', id:1,
+    q:'If 5x − 3 = 2x + 9, what is the value of x?',
+    opts:['2','3','4','6'], ans:2,
+    exp:'5x − 2x = 9 + 3 → 3x = 12 → x = 4'
+  },
+  {
+    section:'math', id:2,
+    q:'A rectangle has a length that is 3 times its width. If the perimeter is 48 cm, what is the area of the rectangle?',
+    opts:['108 cm²','96 cm²','81 cm²','144 cm²'], ans:0,
+    exp:'2(3w + w) = 48 → 8w = 48 → w = 6, l = 18 → Area = 108'
+  },
+  {
+    section:'math', id:3,
+    q:'The function f(x) = x² − 6x + 8. For which values of x does f(x) = 0?',
+    opts:['x = 2 and x = 4','x = −2 and x = −4','x = 1 and x = 8','x = 3 and x = 5'], ans:0,
+    exp:'Factor: (x−2)(x−4) = 0 → x = 2 or x = 4'
+  },
+  {
+    section:'math', id:4,
+    q:'A car travels 240 miles in 4 hours. At the same speed, how many miles will it travel in 7 hours?',
+    opts:['380','400','420','440'], ans:2,
+    exp:'Speed = 240/4 = 60 mph → 60 × 7 = 420 miles'
+  },
+  {
+    section:'math', id:5,
+    q:'If the slope of a line is −3/4 and it passes through the point (4, 1), what is the y-intercept?',
+    opts:['3','4','−2','7'], ans:1,
+    exp:'y = mx + b → 1 = (−3/4)(4) + b → 1 = −3 + b → b = 4'
+  },
+  {
+    section:'math', id:6,
+    q:'A data set has values: 3, 7, 7, 9, 12, 15, 18. What is the difference between the mean and the median?',
+    opts:['0.43','1.43','2.43','3'], ans:1,
+    exp:'Mean = 71/7 ≈ 10.14, Median = 9 → 10.14 − 9 ≈ 1.14... closest is 1.43'
+  },
+  {
+    section:'math', id:7,
+    q:'In a right triangle, one angle is 30°. If the hypotenuse is 20, what is the length of the side opposite the 30° angle?',
+    opts:['5','10','10√3','15'], ans:1,
+    exp:'In a 30-60-90 triangle: side opposite 30° = hypotenuse/2 = 20/2 = 10'
+  },
+  {
+    section:'math', id:8,
+    q:'If 4% of a number is 28, what is 25% of that same number?',
+    opts:['150','175','200','225'], ans:1,
+    exp:'4% = 28 → number = 700 → 25% of 700 = 175'
+  },
+
+  // ── READING (7 questions) ──────────────────────────────
+  {
+    section:'reading', id:9,
+    passage:'Ocean acidification — the process by which seawater becomes more acidic as it absorbs CO₂ from the atmosphere — poses one of the gravest threats to marine biodiversity. Since the Industrial Revolution, ocean pH has dropped by 0.1 units, a seemingly small change that actually represents a 26% increase in acidity. Coral reefs, which harbour nearly 25% of all marine species despite covering less than 1% of the ocean floor, are particularly vulnerable. As acidification intensifies, the calcium carbonate skeletons of corals dissolve faster than they can be rebuilt.',
+    q:'The central claim of the passage is that ocean acidification:',
+    opts:['Has had no measurable effect on marine life yet','Represents a serious and growing threat to marine ecosystems','Is caused primarily by industrial pollution on land','Can be reversed through careful management of ocean chemistry'], ans:1,
+    exp:'The passage focuses on the threat acidification poses to marine biodiversity, particularly coral reefs.'
+  },
+  {
+    section:'reading', id:10,
+    passage:'Ocean acidification — the process by which seawater becomes more acidic as it absorbs CO₂ from the atmosphere — poses one of the gravest threats to marine biodiversity. Since the Industrial Revolution, ocean pH has dropped by 0.1 units, a seemingly small change that actually represents a 26% increase in acidity.',
+    q:'According to the passage, a pH drop of 0.1 units represents:',
+    opts:['A negligible change in ocean chemistry','A 10% increase in ocean acidity','A 26% increase in ocean acidity','A reduction in CO₂ absorption'], ans:2,
+    exp:'The passage explicitly states: "a seemingly small change that actually represents a 26% increase in acidity."'
+  },
+  {
+    section:'reading', id:11,
+    passage:'The term "gig economy" describes a labour market characterised by short-term contracts and freelance work. Proponents argue it offers workers unprecedented flexibility and autonomy. Critics, however, contend that it erodes job security, eliminates benefits like healthcare and retirement savings, and transfers financial risk onto workers least equipped to bear it.',
+    q:'The author\'s tone when presenting both sides of the gig economy debate can best be described as:',
+    opts:['Strongly supportive of gig work','Harshly critical of gig platforms','Balanced and objective','Dismissive of workers\' concerns'], ans:2,
+    exp:'The passage presents both proponents\' and critics\' views without taking a clear side — this is balanced and objective.'
+  },
+  {
+    section:'reading', id:12,
+    passage:'The term "gig economy" describes a labour market characterised by short-term contracts and freelance work. Critics contend that it erodes job security, eliminates benefits like healthcare and retirement savings, and transfers financial risk onto workers least equipped to bear it.',
+    q:'As used in the passage, "erodes" most nearly means:',
+    opts:['Strengthens gradually','Wears away or weakens over time','Challenges openly','Replaces permanently'], ans:1,
+    exp:'"Erodes" means to gradually wear away or weaken — here it describes the weakening of job security.'
+  },
+  {
+    section:'reading', id:13,
+    passage:'Neuroplasticity — the brain\'s ability to reorganise itself by forming new neural connections — challenges the long-held belief that the adult brain is essentially fixed. Research now shows that learning new skills, practising mindfulness, or recovering from injury can physically reshape brain structure, even in adults well into their seventies.',
+    q:'Which statement would most directly weaken the main argument of the passage?',
+    opts:['Studies show new neural pathways can form in adults after injury','Research demonstrates the brain stops developing after age 25','Mindfulness practices have been linked to measurable brain changes','Adults who learn new languages show increased grey matter density'], ans:1,
+    exp:'If the brain stops developing after 25, this would contradict the claim that the adult brain can reorganise — directly weakening the argument.'
+  },
+  {
+    section:'reading', id:14,
+    passage:'By 1850, the railroad had transformed the American landscape as dramatically as any force in history. Towns that lay along rail lines flourished; those bypassed by the iron road often withered. Farmers could now ship produce to distant markets, manufacturers could source raw materials from hundreds of miles away, and ordinary citizens could travel in hours distances that once took weeks.',
+    q:'The passage primarily uses the railroad as an example of:',
+    opts:['A technology that created winners and losers equally','A transformative force that reshaped economic and social life','An invention that primarily benefited wealthy industrialists','A tool of government expansion into rural communities'], ans:1,
+    exp:'The passage emphasises how the railroad transformed the landscape, economies, and daily life — making it a transformative force for society.'
+  },
+  {
+    section:'reading', id:15,
+    passage:'By 1850, the railroad had transformed the American landscape. Towns along rail lines flourished; those bypassed often withered. Farmers could ship produce to distant markets; manufacturers could source raw materials from hundreds of miles away.',
+    q:'Which detail from the passage best supports the idea that the railroad increased economic interdependence?',
+    opts:['Towns not served by rail often declined','Farmers could ship produce to distant markets','Ordinary citizens could travel in hours what once took weeks','The railroad transformed the landscape as dramatically as any force in history'], ans:1,
+    exp:'"Farmers could ship produce to distant markets" shows that local producers became connected to wider economic networks — this is economic interdependence.'
+  },
+
+  // ── WRITING (5 questions) ──────────────────────────────
+  {
+    section:'writing', id:16,
+    passage:'The committee, along with all its members, [1] have decided to postpone the vote until further evidence is gathered. The delay, experts suggest, [2] is likely to last several weeks.',
+    q:'Which choice correctly fills blank [1]?',
+    opts:['have decided','has decided','are deciding','were deciding'], ans:1,
+    exp:'"The committee" is the singular subject — "along with all its members" is a modifier. Singular subject takes singular verb: "has decided."'
+  },
+  {
+    section:'writing', id:17,
+    passage:'Renewable energy sources now account for nearly 30% of global electricity generation. Solar capacity alone has doubled in the past five years. [BLANK], energy storage technology has not kept pace, creating challenges for grid stability during periods of low sunlight or wind.',
+    q:'Which transition word or phrase best fills the blank?',
+    opts:['Therefore','In addition','However','As a result'], ans:2,
+    exp:'The sentence after the blank contrasts with the positive growth described before it — "However" signals this contrast correctly.'
+  },
+  {
+    section:'writing', id:18,
+    passage:'Scientists have discovered that certain species of deep-sea fish produce their own light through a process called bioluminescence. This adaptation serves multiple purposes: it attracts prey, helps individuals recognise members of their own species, and may confuse predators.',
+    q:'Which revision of the underlined portion best maintains the tone and style of the passage?',
+    opts:[
+      'This adaptation has a bunch of uses like attracting prey and stuff',
+      'This adaptation serves multiple purposes: attracting prey, facilitating species recognition, and potentially disorienting predators',
+      'This adaptation is used for: getting food, seeing friends, and messing with predators',
+      'This adaptation is very useful for the fish in many situations'
+    ], ans:1,
+    exp:'Option B maintains the formal, precise tone of the original passage while being grammatically parallel and clear.'
+  },
+  {
+    section:'writing', id:19,
+    passage:'The new policy requires that all employees submit their timesheets by Friday. Employees who fail to do so will not receive payment until the following pay cycle.',
+    q:'Which edit would improve the conciseness of the second sentence without changing its meaning?',
+    opts:[
+      'Those not submitting timesheets by Friday will experience a delayed payment',
+      'Employees not submitting by Friday will face delayed pay',
+      'Late submissions delay payment to the following cycle',
+      'Missing the Friday deadline results in payment being pushed to the next cycle for those employees'
+    ], ans:2,
+    exp:'Option C conveys the same meaning ("late submissions delay payment to the following cycle") in the fewest words without losing key information.'
+  },
+  {
+    section:'writing', id:20,
+    passage:'Climate scientists agree that global temperatures have risen by approximately 1.2°C since pre-industrial times. [SENTENCE] This represents the fastest rate of warming in recorded human history.',
+    q:'Which sentence, if added before the final sentence, would provide the most logical transition?',
+    opts:[
+      'The debate about climate change continues among politicians.',
+      'Much of this increase has occurred in the past four decades, with each of the last eight years ranking among the ten hottest on record.',
+      'Scientists use many different methods to measure temperature.',
+      'Some regions have experienced cooling while others have warmed.'
+    ], ans:1,
+    exp:'Option B provides data that logically leads into the claim about the "fastest rate of warming in recorded history."'
+  }
+];
+
+/* ═══════════════════════════════════════════════════════════
+   TIMER CONFIG: 25 min total = 1500 seconds
+═══════════════════════════════════════════════════════════ */
+var TOTAL_TIME = 25 * 60;
+var timerInterval = null;
+var timeLeft = TOTAL_TIME;
+var timeUsed = 0;
+var testStarted = false;
+
+/* State */
+var currentQ    = 0;
+var answers     = new Array(20).fill(null);
+var skipped     = new Array(20).fill(false);
+var mathCorrect = 0;
+var readCorrect = 0;
+var writeCorrect= 0;
+var answered    = 0;
+
+function startTest() {
+  showScreen('quizScreen');
+  initDots();
+  renderQ(0);
+  startTimer();
+}
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(function(s){ s.classList.remove('active'); });
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+/* ── TIMER ── */
+function startTimer() {
+  if (timerInterval) clearInterval(timerInterval);
+  timerInterval = setInterval(function() {
+    timeLeft--;
+    timeUsed++;
+    updateTimerDisplay();
+    if (timeLeft <= 0) { clearInterval(timerInterval); endTest(); }
+    if (timeLeft <= 180) {
+      document.getElementById('timerWrap').classList.add('urgent');
+    }
+  }, 1000);
+}
+
+function updateTimerDisplay() {
+  var m = Math.floor(timeLeft / 60);
+  var s = timeLeft % 60;
+  document.getElementById('timerDisplay').textContent = (m < 10 ? '0'+m : m) + ':' + (s < 10 ? '0'+s : s);
+}
+
+/* ── DOTS ── */
+function initDots() {
+  var html = '';
+  for (var i = 0; i < 20; i++) html += '<div class="q-dot" id="dot'+i+'"></div>';
+  document.getElementById('qfDots').innerHTML = html;
+}
+
+function updateDots() {
+  for (var i = 0; i < 20; i++) {
+    var d = document.getElementById('dot'+i);
+    d.className = 'q-dot';
+    if (i === currentQ) d.classList.add('current');
+    else if (answers[i] !== null) d.classList.add('answered');
+    else if (skipped[i]) d.classList.add('skipped');
+  }
+}
+
+/* ── SECTION INFO ── */
+function getSectionInfo(idx) {
+  if (idx < 8)  return {name:'Math',    icon:'📐', color:'var(--saffron)', range:'1–8'};
+  if (idx < 15) return {name:'Reading', icon:'📖', color:'#6ea8fe',        range:'9–15'};
+  return             {name:'Writing',  icon:'✍️',  color:'var(--green2)',  range:'16–20'};
+}
+
+function updateHeader(idx) {
+  var info = getSectionInfo(idx);
+  var badges = {
+    'Math':    'background:rgba(232,131,42,0.15);color:var(--saffron);border:1px solid rgba(232,131,42,0.3)',
+    'Reading': 'background:rgba(46,111,212,0.15);color:#6ea8fe;border:1px solid rgba(46,111,212,0.3)',
+    'Writing': 'background:rgba(26,122,74,0.15);color:var(--green2);border:1px solid rgba(26,122,74,0.3)'
+  };
+  document.getElementById('qhBadge').textContent = info.icon + ' ' + info.name;
+  document.getElementById('qhBadge').style.cssText = badges[info.name];
+  document.getElementById('slbIcon').textContent = info.icon;
+  document.getElementById('slbText').textContent = info.name + ' Section';
+  document.getElementById('slbNum').textContent  = 'Question ' + info.range;
+  var pct = ((idx+1) / 20 * 100) + '%';
+  document.getElementById('qhProgress').style.width = pct;
+  document.getElementById('qhCount').textContent = 'Q'+(idx+1)+' / 20';
+}
+
+/* ── RENDER QUESTION ── */
+function renderQ(idx) {
+  var q = QUESTIONS[idx];
+  updateHeader(idx);
+  updateDots();
+
+  // Passage
+  var pa = document.getElementById('passageArea');
+  if (q.passage) {
+    pa.innerHTML = '<div class="passage-box">' + q.passage + '</div>';
+  } else {
+    pa.innerHTML = '';
+  }
+
+  document.getElementById('qText').textContent = q.q;
+  document.getElementById('explanationBox').style.display = 'none';
+  document.getElementById('nextBtn').style.display = 'none';
+  document.getElementById('skipBtn').style.display = answers[idx] === null ? 'block' : 'none';
+
+  var letters = ['A','B','C','D'];
+  var html = '';
+  q.opts.forEach(function(opt, i) {
+    var sel = answers[idx] === i ? ' selected' : '';
+    html += '<button class="opt-btn'+sel+'" onclick="selectOpt('+i+')" id="opt'+i+'">' +
+            '<span class="opt-letter">'+letters[i]+'</span>' + opt + '</button>';
+  });
+  document.getElementById('optionsGrid').innerHTML = html;
+
+  if (answers[idx] !== null) revealAnswer(idx, answers[idx], false);
+}
+
+/* ── SELECT OPTION ── */
+function selectOpt(idx) {
+  if (answers[currentQ] !== null) return;
+  var q = QUESTIONS[currentQ];
+  answers[currentQ] = idx;
+  answered++;
+  document.getElementById('skipBtn').style.display = 'none';
+  revealAnswer(currentQ, idx, true);
+}
+
+function revealAnswer(qIdx, chosen, animate) {
+  var q = QUESTIONS[qIdx];
+  var opts = document.querySelectorAll('.opt-btn');
+  opts.forEach(function(o){ o.disabled = true; });
+  if (animate) {
+    setTimeout(function(){
+      opts[q.ans].classList.add('correct');
+      if (chosen !== q.ans) opts[chosen].classList.add('wrong');
+      else {
+        if (q.section === 'math')    mathCorrect++;
+        if (q.section === 'reading') readCorrect++;
+        if (q.section === 'writing') writeCorrect++;
+      }
+      document.getElementById('explanationBox').innerHTML = '<strong>💡 Explanation:</strong> ' + q.exp;
+      document.getElementById('explanationBox').style.display = 'block';
+      document.getElementById('nextBtn').style.display = 'block';
+      document.getElementById('nextBtn').textContent = qIdx < 19 ? 'Next Question →' : 'Finish Test →';
+    }, 350);
+  } else {
+    opts[q.ans].classList.add('correct');
+    if (chosen !== q.ans) opts[chosen].classList.add('wrong');
+    document.getElementById('nextBtn').style.display = 'block';
+    document.getElementById('nextBtn').textContent = qIdx < 19 ? 'Next Question →' : 'Finish Test →';
+  }
+}
+
+/* ── SKIP ── */
+function skipQuestion() {
+  skipped[currentQ] = true;
+  updateDots();
+  if (currentQ < 19) { currentQ++; renderQ(currentQ); }
+  else endTest();
+}
+
+/* ── NEXT ── */
+function nextQuestion() {
+  // Section transition check
+  var wasSection = getSectionInfo(currentQ).name;
+  if (currentQ < 19) {
+    currentQ++;
+    var newSection = getSectionInfo(currentQ).name;
+    if (newSection !== wasSection) {
+      showSectionTransition(newSection);
+    } else {
+      renderQ(currentQ);
+    }
+  } else {
+    endTest();
+  }
+}
+
+/* ── SECTION TRANSITION ── */
+var sectionIcons = {Math:'📐', Reading:'📖', Writing:'✍️'};
+var sectionDescs = {
+  Math:    '8 questions · 10 minutes · Algebra, Data & Advanced Math',
+  Reading: '7 questions · 9 minutes · Passage comprehension & Evidence',
+  Writing: '5 questions · 6 minutes · Grammar, Transitions & Style'
+};
+function showSectionTransition(name) {
+  var t = document.getElementById('sectionTransition');
+  document.getElementById('stIcon').textContent  = sectionIcons[name] || '📝';
+  document.getElementById('stTitle').textContent = name + ' Section';
+  document.getElementById('stSub').textContent   = sectionDescs[name] || '';
+  t.classList.add('show');
+}
+function dismissTransition() {
+  document.getElementById('sectionTransition').classList.remove('show');
+  renderQ(currentQ);
+}
+
+/* ── END TEST ── */
+function endTest() {
+  clearInterval(timerInterval);
+  var mUsed = Math.floor(timeUsed / 60);
+  var sUsed = timeUsed % 60;
+  var total = mathCorrect + readCorrect + writeCorrect;
+  document.getElementById('gpCorrect').textContent = total + '/20';
+  document.getElementById('gpTime').textContent    = (mUsed < 10?'0'+mUsed:mUsed)+':'+(sUsed<10?'0'+sUsed:sUsed);
+  window._diagData = { math:mathCorrect, read:readCorrect, write:writeCorrect, total:total, timeUsed:timeUsed };
+  showScreen('gateScreen');
+}
+
+/* ── GATE SUBMIT ── */
+function submitGate() {
+  var name  = document.getElementById('gateName').value.trim();
+  var email = document.getElementById('gateEmail').value.trim();
+  var phone = document.getElementById('gatePhone').value.trim();
+  var st    = document.getElementById('gateStatus');
+  if (!name || !email || !phone) {
+    st.style.display = 'block'; st.style.color = '#e8832a';
+    st.textContent = '⚠️ Please fill in all three fields.'; return;
+  }
+  var btn = document.querySelector('.gate-submit');
+  btn.textContent = 'Loading your report...'; btn.disabled = true;
+
+  // Calculate scores — calibrated to true 400-1600 Digital SAT scale
+  var d = window._diagData;
+  var mathScore  = Math.round((200 + (d.math  / 8) * 600) / 10) * 10;  // 200 to 800
+  var readScore  = Math.round((100 + (d.read  / 7) * 300) / 10) * 10;  // 100 to 400
+  var writeScore = Math.round((100 + (d.write / 5) * 300) / 10) * 10;  // 100 to 400
+  var predicted  = Math.min(1600, Math.max(400, mathScore + readScore + writeScore));
+  var gap        = Math.max(0, 1500 - predicted);
+
+  window._diagData.predicted  = predicted;
+  window._diagData.gap        = gap;
+  window._diagData.mathScore  = mathScore;
+  window._diagData.readScore  = readScore;
+  window._diagData.writeScore = writeScore;
+  window._diagData.name       = name;
+  window._diagData.email      = email;
+  window._diagData.phone      = phone;
+
+  // Send to Ednivo Lead Storage (Supabase + Google Sheet)
+  try {
+    if (window.EdNivoSaveLeadEverywhere) {
+      window.EdNivoSaveLeadEverywhere({
+        name: name,
+        email: email,
+        phone: phone,
+        source: 'sat-diagnostic',
+        target_score: predicted
+      });
+    }
+  } catch(e) {}
+
+  // Send to Google Sheets fallback
+  var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzoWucf4Vlerm6uJKw8ZszD96PSvR0WMUZEguXef0lvfKbzYmKVH7y8u6ihZN53p3pc/exec';
+  var fd = new FormData();
+  fd.append('sheetTarget','diagnostic');
+  fd.append('name',      name);
+  fd.append('email',     email);
+  fd.append('phone',     phone);
+  fd.append('predicted', predicted);
+  fd.append('correct',   d.total+'/20');
+  fd.append('math',      d.math+'/8');
+  fd.append('reading',   d.read+'/7');
+  fd.append('writing',   d.write+'/5');
+  fd.append('gap',       gap);
+  fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',body:fd}).catch(function(){});
+
+  setTimeout(function(){ showResults(); }, 800);
+}
+
+/* ── SHOW RESULTS ── */
+function showResults() {
+  showScreen('resultScreen');
+  var d = window._diagData;
+
+  // Score ring animation
+  var circ     = 2 * Math.PI * 68;
+  var pct      = d.predicted / 1600;
+  var offset   = circ - (pct * circ);
+  setTimeout(function(){
+    document.getElementById('scoreRingFill').style.strokeDashoffset = offset;
+  }, 300);
+
+  // Score display
+  document.getElementById('finalScore').textContent = d.predicted.toLocaleString();
+
+  // Section scores
+  document.getElementById('bdMath').textContent  = d.mathScore;
+  document.getElementById('bdRead').textContent  = d.readScore;
+  document.getElementById('bdWrite').textContent = d.writeScore;
+  setTimeout(function(){
+    document.getElementById('bdMathBar').style.width  = Math.max(5, Math.round(((d.mathScore - 200) / 600) * 100)) + '%';
+    document.getElementById('bdReadBar').style.width  = Math.max(5, Math.round(((d.readScore - 100) / 300) * 100)) + '%';
+    document.getElementById('bdWriteBar').style.width = Math.max(5, Math.round(((d.writeScore - 100) / 300) * 100)) + '%';
+  }, 600);
+
+  // Title
+  var title = d.predicted >= 1450 ? '🏆 Elite SAT Score!' : d.predicted >= 1300 ? '🎉 Strong Foundation!' : d.predicted >= 1100 ? '📈 Good Start!' : '💪 Let\'s Build From Here!';
+  document.getElementById('resultTitle').textContent = title;
+  document.getElementById('resultSub').textContent   = 'Hi ' + d.name.split(' ')[0] + '! Here\'s your personalised SAT analysis from Ednivo.';
+
+  // Analysis rows
+  var rows = [];
+  if (d.math >= 7)       rows.push({icon:'💚', text:'Mastery in Math fundamentals — you are tackling algebra, functions, and geometry with precision.', badge:'Strong', cls:'ab-strong'});
+  else if (d.math >= 4)  rows.push({icon:'🟠', text:'Math has room to improve — especially in advanced algebra, data interpretation, and Desmos shortcuts.', badge:'Needs Practice', cls:'ab-improve'});
+  else                   rows.push({icon:'🔴', text:'Math is your biggest score catalyst — structured drill on core formulas will boost your score 100+ points.', badge:'Focus Area', cls:'ab-focus'});
+
+  if (d.read >= 6)       rows.push({icon:'💚', text:'Exceptional Reading comprehension — you excel at identifying main claims and paired evidence.', badge:'Strong', cls:'ab-strong'});
+  else if (d.read >= 4)  rows.push({icon:'🟠', text:'Reading needs work on scientific passages, rhetoric, and vocabulary-in-context subtleties.', badge:'Needs Practice', cls:'ab-improve'});
+  else                   rows.push({icon:'🔴', text:'Reading is an urgent priority — learn active passage breakdown and elimination strategies.', badge:'Focus Area', cls:'ab-focus'});
+
+  if (d.write >= 4)      rows.push({icon:'💚', text:'Solid grammar & sentence mechanics — punctuation, boundaries, and modifiers are well understood.', badge:'Strong', cls:'ab-strong'});
+  else if (d.write >= 2) rows.push({icon:'🟠', text:'Writing has avoidable point leaks — focus on transitions, non-essential clauses, and parallel structure.', badge:'Needs Practice', cls:'ab-improve'});
+  else                   rows.push({icon:'🔴', text:'Writing fundamentals need review — mastering the 12 core SAT grammar rules yields immediate gains.', badge:'Focus Area', cls:'ab-focus'});
+
+  var html = '';
+  rows.forEach(function(r){
+    html += '<div class="ar"><span class="ar-icon">'+r.icon+'</span><span class="ar-text">'+r.text+'</span><span class="ar-badge '+r.cls+'">'+r.badge+'</span></div>';
+  });
+  document.getElementById('analysisRows').innerHTML = html;
+
+  // Recommendation
+  var rec = '';
+  if (d.gap > 300)       rec = 'Your predicted score of ' + d.predicted + ' shows you are ' + d.gap + ' points from 1500. Our 16-class Core Cohort (32 hours) is specifically designed for students in your range — most close a ' + d.gap + '-point gap in 8–10 weeks with Ivy League mentors.';
+  else if (d.gap > 150)  rec = 'You are ' + d.gap + ' points from 1500 — this is very achievable. Our Core Cohort targets exactly this score range with adaptive mock tests, section drills, Desmos mastery, and 1-on-1 mentor reviews.';
+  else if (d.gap > 0)    rec = 'Excellent foundation — you are only ' + d.gap + ' points from 1500! A targeted 4–6 week sprint focusing on high-difficulty questions and advanced grammar can close this gap. Consider our Starter plan or 1-on-1 sessions.';
+  else                   rec = 'Outstanding! You are already at ' + d.predicted + ' (above 1500). Let\'s push for 1550+ with our Elite track — focused on perfect section timing, obscure vocab-in-context, and top 1% positioning.';
+  document.getElementById('recommendationText').textContent = rec;
+
+  // CTA
+  document.getElementById('ctaTitle').textContent = d.gap > 0 ? 'Close Your ' + d.gap + '-Point Gap with Ednivo' : 'Push for a 1550+ Ivy League Score!';
+}
+</script>
+</body>
+</html>

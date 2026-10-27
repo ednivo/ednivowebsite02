@@ -1,21 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://ednivo.in/blog-sat-guide.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://ednivo.in/blog-us-admissions.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://ednivo.in/blog.html</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://ednivo.in/book.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://ednivo.in/college-calculator.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://ednivo.in/college-credits.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://ednivo.in/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://ednivo.in/loans-forex.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://ednivo.in/pricing.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://ednivo.in/profile-building.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://ednivo.in/resources.html</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://ednivo.in/sat-act.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ednivo.in/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://ednivo.in/pricing.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://ednivo.in/sat-tutoring-online.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://ednivo.in/sat-diagnostic.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://ednivo.in/score-calculator.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ednivo.in/syllabus.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://ednivo.in/sat-exam.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://ednivo.in/sat-faqs.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://ednivo.in/sat-tutoring-online.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://ednivo.in/score-calculator.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://ednivo.in/syllabus.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://ednivo.in/testimonials.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ednivo.in/sat-act.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://ednivo.in/college-calculator.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://ednivo.in/college-credits.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://ednivo.in/loans-forex.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://ednivo.in/profile-building.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://ednivo.in/resources.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://ednivo.in/testimonials.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://ednivo.in/book.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ednivo.in/blog.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ednivo.in/blog-sat-guide.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ednivo.in/blog-us-admissions.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ednivo.in/blog-digital-sat.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ednivo.in/blog-sat-vs-act.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ednivo.in/blog-personal-statement.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ednivo.in/blog-loan-comparison.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ednivo.in/blog-f1-visa.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ednivo.in/blog-desmos-sat-shortcuts.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>

@@ -1,4 +1,8 @@
 /* Public-site conversion, checkout, social and popup UI */
+.faq-item h2, .card h2, .cardx h2, .panel h2, .step h2, article h2 {
+  letter-spacing: normal !important;
+  word-spacing: normal !important;
+}
 .engage-overlay{position:fixed;inset:0;z-index:1000;background:rgba(12,20,34,.58);backdrop-filter:blur(6px);display:grid;place-items:center;padding:20px}
 .engage-card{width:min(500px,100%);background:#fff;border:1px solid #e7eaf0;border-radius:24px;padding:32px;box-shadow:0 30px 90px rgba(16,24,40,.25);position:relative}
 .engage-close{position:absolute;right:14px;top:10px;border:0;background:transparent;font-size:30px;color:#667085;cursor:pointer}

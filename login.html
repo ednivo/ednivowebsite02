@@ -98,7 +98,7 @@
    const {data,error}=await window.ednivoSupabase.auth.getUser(); if(error||!data.user) throw new Error('Session could not be verified.');
    const old=await window.EDNIVO_DB.getProfile(data.user.id); const p=pending()||{}; const meta=data.user.user_metadata||{};
    const profile={id:data.user.id,role:'student',name:old?.name||p.name||meta.full_name||meta.name||'',email:data.user.email||p.email||'',phone:old?.phone||p.phone||'',country:old?.country||p.country||'UAE',grade:old?.grade||p.grade||'',curriculum:old?.curriculum||'',target_score:old?.target_score||null,test_date:old?.test_date||null};
-   await window.EDNIVO_DB.saveProfile(profile); localStorage.setItem('pw_user',JSON.stringify({...profile,loggedIn:true})); localStorage.removeItem(pendingKey); location.href=redirect();
+   await window.EDNIVO_DB.saveProfile(profile); const pStr = JSON.stringify({...profile,loggedIn:true}); localStorage.setItem('pw_user',pStr); localStorage.setItem('ednivo_user',pStr); localStorage.removeItem(pendingKey); location.href=redirect();
  }
  let resendUntil=0;
  async function otpStart(email, profile){
@@ -146,6 +146,7 @@
      const user={...existing,...p,email:p.email,role:'student',loggedIn:true};
      saveUserDirectoryEntry(user);
      localStorage.setItem('pw_user',JSON.stringify(user));
+     localStorage.setItem('ednivo_user',JSON.stringify(user));
      localStorage.setItem('ednivo_profile',JSON.stringify(user));
      sessionStorage.setItem('ednivo_otp_verified_email',p.email);
      localStorage.removeItem(pendingKey);

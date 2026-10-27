@@ -1,8 +1,20 @@
 User-agent: *
 Allow: /
+Disallow: /admin.html
+Disallow: /student-dashboard.html
+Disallow: /classes.html
+Disallow: /practice.html
+Disallow: /mocks.html
+Disallow: /payment.html
 
-# OpenAI search crawler: public pages may be discovered. Private workflow pages carry noindex directives.
+# OpenAI search crawler: public pages may be discovered.
 User-agent: OAI-SearchBot
 Allow: /
+Disallow: /admin.html
+Disallow: /student-dashboard.html
+Disallow: /classes.html
+Disallow: /practice.html
+Disallow: /mocks.html
+Disallow: /payment.html
 
 Sitemap: https://ednivo.in/sitemap.xml

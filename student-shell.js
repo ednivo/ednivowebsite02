@@ -8,7 +8,7 @@
     ['calculator','score-calculator.html','◈','Score Calculator'],
     ['ai','ai-tutor.html','✦','AI SAT Coach']
   ];
-  function user(){try{return JSON.parse(localStorage.getItem('pw_user')||'{}')}catch(e){return {}}}
+  function user(){try{return JSON.parse(localStorage.getItem('ednivo_user')||localStorage.getItem('pw_user')||'{}')}catch(e){return {}}}
   async function getProfile(){
     const u=user();
     try{
